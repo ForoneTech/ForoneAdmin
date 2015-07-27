@@ -1,0 +1,17 @@
+{
+  "name": "forone/admin",
+  "description": "forone laravel 5.1 admin",
+  "authors": [
+    {
+      "name": "YuGang Yang",
+      "email": "smartydroid@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "illuminate/routing": "5.1.*",
+    "illuminate/support": "5.1.*",
+    "illuminate/html": "5.0.0"
+  },
+  "minimum-stability": "dev"
+}
