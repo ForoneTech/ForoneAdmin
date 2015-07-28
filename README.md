@@ -4,11 +4,15 @@
 * publish views to app resources/views/vendor/forone
 
     ```
-    publish artisan vendor:publish
-
+    php artisan vendor:publish --tag=views
+    ```
 
 * publish config
 
     ```
-    publish artisan vendor:publish
+    php artisan vendor:publish --tag=config
+    ```
+
+
+* php artisan vendor:publish --force
 
