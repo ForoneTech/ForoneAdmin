@@ -16,6 +16,26 @@ class ForoneServiceProvider extends ServiceProvider
         if (!$this->app->routesAreCached()) {
             require __DIR__ . '/../routes.php';
         }
+
+        $this->registerPublish();
+    }
+
+    private function registerPublish()
+    {
+        // publish views
+        $this->publishes([
+            __DIR__.'/../../../resources/views' => base_path('resources/views/vendor/foreone'),
+        ]);
+
+        // publish config
+        $this->publishes([
+            __DIR__.'/../../../config/config.php' => config_path('forone.php'),
+        ]);
+
+        // publish assets to public/
+        $this->publishes([
+            __DIR__.'/../../../../public' => public_path('vendor/forone'),
+        ], 'public');
     }
 
     /**
