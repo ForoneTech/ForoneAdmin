@@ -6,6 +6,7 @@
     ```
     publish artisan vendor:publish
 
+
 * publish config
 
     ```
