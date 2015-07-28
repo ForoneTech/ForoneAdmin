@@ -39,7 +39,7 @@
     </div>
 </div>
 
-@include('partials.scripts')
+@include('forone::partials.scripts')
 
 <script>
     $(function(){
