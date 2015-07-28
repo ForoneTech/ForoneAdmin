@@ -11,6 +11,7 @@ namespace Forone\Admin\Controllers\Permissions;
 
 use App\Http\Requests\CreateRoleRequest;
 use Artesaos\Defender\Facades\Defender;
+use Artesaos\Defender\Permission;
 use Artesaos\Defender\Role;
 use Forone\Admin\Controllers\BaseController;
 use Illuminate\Http\Request;
@@ -69,7 +70,7 @@ class RolesController extends BaseController {
      */
     public function create()
     {
-        return $this->view('roles.create');
+        return $this->view('forone::roles.create');
     }
 
     /**

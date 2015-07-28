@@ -33,7 +33,12 @@ class ForoneServiceProvider extends ServiceProvider
 
 //        $this->registerProvider();
 //        $this->registerAlias();
+
+        // Controle de acesso mais simples, utiliza apenas os grupos
+        $this->app['router']->middleware('needsRole', \Artesaos\Defender\Middlewares\NeedsRoleMiddleware::class);
     }
+
+
 
     private function registerCommands()
     {
