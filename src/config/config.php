@@ -7,9 +7,10 @@
  */
 
 return [
-    'site_config' => [
+    'site_config'  => [
         'site_name'   => 'your site name',
         'title'       => 'your site title',
         'description' => 'you site description'
     ],
+    'redirectPath' => 'admin/dashboard',
 ];

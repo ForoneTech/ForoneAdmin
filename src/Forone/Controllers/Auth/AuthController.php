@@ -48,6 +48,7 @@ class AuthController extends BaseController {
     {
         parent::__construct();
         $this->middleware('guest', ['only' => 'getLogout']);
+        $this->redirectPath = config('forone.redirectPath') ? config('forone.redirectPath') : $this->redirectPath;
     }
 
     /**
