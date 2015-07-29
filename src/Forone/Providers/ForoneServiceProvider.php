@@ -55,15 +55,15 @@ class ForoneServiceProvider extends ServiceProvider
 
     private function registerProvider()
     {
-        $this->app->register(\Illuminate\Html\HtmlServiceProvider::class);
-        $this->app->register(\Forone\Admin\Providers\ForoneHtmlServiceProvider::class);
+//        $this->app->register(\Illuminate\Html\HtmlServiceProvider::class);
+//        $this->app->register(\Forone\Admin\Providers\ForoneHtmlServiceProvider::class);
 //        $this->app->register(\Artesaos\Defender\Providers\DefenderServiceProvider::class);
     }
 
     private function registerAlias()
     {
-        $this->app->alias('Form', \Illuminate\Html\FormFacade::class);
-        $this->app->alias('Html', \Illuminate\Html\HtmlFacade::class);
+//        $this->app->alias('Form', \Illuminate\Html\FormFacade::class);
+//        $this->app->alias('Html', \Illuminate\Html\HtmlFacade::class);
     }
 
     /**
