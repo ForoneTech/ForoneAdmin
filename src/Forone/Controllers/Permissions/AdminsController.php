@@ -8,10 +8,11 @@
 
 namespace Forone\Admin\Controllers\Permissions;
 
-use App\Http\Requests\CreateAdminRequest;
 use Artesaos\Defender\Facades\Defender;
 use Artesaos\Defender\Role;
+use Forone\Admin\Admin;
 use Forone\Admin\Controllers\BaseController;
+use Forone\Admin\Requests\CreateAdminRequest;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Http\Request;
 
@@ -41,11 +42,6 @@ class AdminsController extends BaseController {
                     if (!$data->hasRole(config('defender.superuser_role', 'superuser'))) {
                         array_push($buttons, ['分配角色', '#modal']);
                     }
-//                    if ($data->enabled) {
-//                        array_push($buttons, ['禁用']);
-//                    } else {
-//                        array_push($buttons, ['启用']);
-//                    }
                     return $buttons;
                 }]
             ]
@@ -61,12 +57,12 @@ class AdminsController extends BaseController {
         $paginate = Admin::with('roles')->orderBy('created_at', 'desc')->paginate();
         $results['items'] = $paginate;
 
-        return $this->view(self::URI.'.index', compact('results', 'roles'));
+        return $this->view('forone::' . self::URI.'.index', compact('results', 'roles'));
     }
 
     public function create()
     {
-        return $this->view(self::URI.'.create');
+        return $this->view('forone::' . self::URI.'.create');
     }
 
     /**
@@ -90,7 +86,7 @@ class AdminsController extends BaseController {
     {
         $data = Admin::findOrFail($id);
         if ($data) {
-            return view(self::URI."/show", compact('data'));
+            return $this->view('forone::' . self::URI. "/show", compact('data'));
         }else{
             return $this->redirectWithError('数据未找到');
         }
@@ -106,7 +102,7 @@ class AdminsController extends BaseController {
     {
         $data = Admin::findOrFail($id);
         if ($data) {
-            return view(self::URI."/edit", compact('data'));
+            return $this->view('forone::' . self::URI. "/edit", compact('data'));
         }else{
             return $this->redirectWithError('数据未找到');
         }

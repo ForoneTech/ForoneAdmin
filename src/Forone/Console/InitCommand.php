@@ -61,7 +61,6 @@ class InitCommand extends Command
      */
     private function initPerms()
     {
-        Permission::create(['name' => 'admin.dashboard.index', 'readable_name' => '数据面板']);
         Permission::create(['name' => 'permissions#', 'readable_name' => '权限']);
         Permission::create(['name' => 'admin.roles.index', 'readable_name' => '角色管理']);
         Permission::create(['name' => 'admin.permissions.index', 'readable_name' => '权限管理']);

@@ -8,10 +8,11 @@
 
 namespace Forone\Admin\Controllers\Permissions;
 
-use App\Http\Requests\CreatePermissionRequest;
-use App\Http\Requests\UpdatePermissionRequest;
 use Artesaos\Defender\Facades\Defender;
+use Artesaos\Defender\Permission;
 use Forone\Admin\Controllers\BaseController;
+use Forone\Admin\Requests\CreatePermissionRequest;
+use Forone\Admin\Requests\UpdatePermissionRequest;
 
 class PermissionsController extends BaseController {
 
@@ -45,7 +46,7 @@ class PermissionsController extends BaseController {
         $paginate = Permission::paginate();
         $results['items'] = $paginate;
 
-        return $this->view(self::URI.'.index', compact('results'));
+        return $this->view('forone::' . self::URI.'.index', compact('results'));
     }
 
     /**
@@ -54,7 +55,7 @@ class PermissionsController extends BaseController {
      */
     public function create()
     {
-        return $this->view('permissions.create');
+        return $this->view('forone::permissions.create');
     }
 
     /**
@@ -78,7 +79,7 @@ class PermissionsController extends BaseController {
     {
         $data = Defender::findPermissionById($id);
         if ($data) {
-            return view(self::URI."/edit", compact('data'));
+            return view('forone::' . self::URI."/edit", compact('data'));
         } else {
             return $this->redirectWithError('数据未找到');
         }

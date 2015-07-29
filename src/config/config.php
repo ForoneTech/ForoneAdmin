@@ -12,7 +12,7 @@ return [
         'title'       => 'your site title',
         'description' => 'you site description'
     ],
-    'redirectPath' => 'admin/dashboard',
+    'redirectPath' => 'admin/roles',
 
     'menus'        => [
         '权限' => [

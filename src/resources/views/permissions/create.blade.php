@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('forone::layouts.master')
 
 @section('title', '创建'.$page_name)
 
@@ -10,7 +10,7 @@
     @else
         {!! Form::open(['url'=>'admin/'.$uri,'class'=>'form-horizontal']) !!}
     @endif
-    @include($uri.'.form')
+    @include('forone::'. $uri.'.form')
     {!! Form::panel_end('保存') !!}
     {!! Form::close() !!}
 

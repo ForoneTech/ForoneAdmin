@@ -57,7 +57,7 @@ class ForoneHtmlServiceProvider extends ServiceProvider{
             return $arr;
         });
         Form::macro('group_label', function ($name, $label) {
-            $value = RsctServiceProvider::parseValue($this->model, $name);
+            $value = ForoneHtmlServiceProvider::parseValue($this->model, $name);
             return '<div class="control-group">
                         <label for="title" class="control-label">' . $label . '</label>
                         <div class="controls">
@@ -69,7 +69,7 @@ class ForoneHtmlServiceProvider extends ServiceProvider{
             return '<input type="hidden" value="'.$value.'" name="'.$name.'" id="'.$name.'">';
         });
         Form::macro('group_text', function ($name,$label,$placeholder='',$percent=0.5, $modal=false) {
-            $value = RsctServiceProvider::parseValue($this->model, $name);
+            $value = ForoneHtmlServiceProvider::parseValue($this->model, $name);
             $data = '';
             $input_col = 9;
             if (is_array($placeholder)) {
@@ -253,7 +253,7 @@ class ForoneHtmlServiceProvider extends ServiceProvider{
             return $result . '</select></div></div>';
         });
         Form::macro('form_date', function ($name,$label,$placeholder='',$percent=0.5) {
-            $value = RsctServiceProvider::parseValue($this->model, $name);
+            $value = ForoneHtmlServiceProvider::parseValue($this->model, $name);
             if (!is_string($placeholder)) {
                 $percent = $placeholder;
             }
@@ -265,7 +265,7 @@ class ForoneHtmlServiceProvider extends ServiceProvider{
             return $result.'</div></div>'.$js;
         });
         Form::macro('form_time', function ($name,$label,$placeholder='',$percent=0.5) {
-            $value = RsctServiceProvider::parseValue($this->model, $name);
+            $value = ForoneHtmlServiceProvider::parseValue($this->model, $name);
             if (!is_string($placeholder)) {
                 $percent = $placeholder;
             }
@@ -277,7 +277,7 @@ class ForoneHtmlServiceProvider extends ServiceProvider{
             return $result.'</div></div>'.$js;
         });
         Form::macro('single_file_upload', function ($name, $label, $percent=0.5) {
-            $value = RsctServiceProvider::parseValue($this->model, $name);
+            $value = ForoneHtmlServiceProvider::parseValue($this->model, $name);
             $url = $value ? config('rsct.img_host').$value : '/admin/img/upload_add.png';
             return '<div class="form-group col-sm-' . ($percent * 12) . '">
                         ' . Form::form_label($label) . '
@@ -306,7 +306,7 @@ class ForoneHtmlServiceProvider extends ServiceProvider{
             return $result;
         });
         Form::macro('multi_file_upload', function ($name, $label, $percent=0.5) {
-            $value = RsctServiceProvider::parseValue($this->model, $name);
+            $value = ForoneHtmlServiceProvider::parseValue($this->model, $name);
             $url = '/admin/img/upload_add.png';
             $uploaded_items = '';
             if ($value) {

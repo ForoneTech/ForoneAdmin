@@ -69,6 +69,12 @@
 <script src="{{ asset('vendor/forone/libs/jquery/bootstrap/dist/js/bootstrap.js') }}"></script>
 <script src="{{ asset('vendor/forone/libs/jquery/waves/dist/waves.js') }}"></script>
 
+<script src="{{ asset('vendor/forone/scripts/ui-load.js') }}"></script>
+<script src="{{ asset('vendor/forone/scripts/ui-jp.config.js') }}"></script>
+<script src="{{ asset('vendor/forone/scripts/ui-jp.js') }}"></script>
+<script src="{{ asset('vendor/forone/scripts/ui-nav.js') }}"></script>
+<script src="{{ asset('vendor/forone/scripts/ui-toggle.js') }}"></script>
+<script src="{{ asset('vendor/forone/scripts/ui-waves.js') }}"></script>
 
 {{--<!-- Chosen -->--}}
 <script src='{{ asset('vendor/forone/select/js/chosen.jquery.min.js') }}'></script>

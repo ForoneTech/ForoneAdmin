@@ -9,11 +9,11 @@
 namespace Forone\Admin\Controllers\Permissions;
 
 
-use App\Http\Requests\CreateRoleRequest;
 use Artesaos\Defender\Facades\Defender;
 use Artesaos\Defender\Permission;
 use Artesaos\Defender\Role;
 use Forone\Admin\Controllers\BaseController;
+use Forone\Admin\Requests\CreateRoleRequest;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -94,7 +94,7 @@ class RolesController extends BaseController {
     {
         $data = Role::findOrFail($id);
         if ($data) {
-            return view(self::URI."/edit", compact('data'));
+            return $this->view('forone::' . self::URI."/edit", compact('data'));
         } else {
             return $this->redirectWithError('数据未找到');
         }
