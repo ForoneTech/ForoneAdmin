@@ -39,6 +39,9 @@ class AuthController extends BaseController {
      */
     protected $redirectAfterLogout = 'admin/auth/login';
 
+    /**
+     * @var string
+     */
     protected $loginPath = 'admin/auth/login';
 
     /**
@@ -47,8 +50,8 @@ class AuthController extends BaseController {
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('guest', ['only' => 'getLogout']);
-        $this->redirectPath = config('forone.redirectPath') ? config('forone.redirectPath') : $this->redirectPath;
+        $this->middleware('admin.guest', ['except' => 'getLogout']);
+        $this->redirectPath = config('forone.RedirectAfterLoginPath') ? config('forone.RedirectAfterLoginPath') : $this->redirectPath;
     }
 
     /**

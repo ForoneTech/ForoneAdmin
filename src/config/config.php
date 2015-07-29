@@ -12,7 +12,8 @@ return [
         'title'       => 'your site title',
         'description' => 'you site description'
     ],
-    'redirectPath' => 'admin/roles',
+    'RedirectAfterLoginPath' => 'admin/roles', // 登录后跳转页面
+    'RedirectIfAuthenticatedPath' => 'admin/roles', // 如果授权后直接跳转到指定页面
 
     'menus'        => [
         '权限' => [

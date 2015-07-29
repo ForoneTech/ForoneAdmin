@@ -37,6 +37,8 @@ class ForoneServiceProvider extends ServiceProvider
 
         // Controle de acesso mais simples, utiliza apenas os grupos
         $this->app['router']->middleware('needsRole', \Artesaos\Defender\Middlewares\NeedsRoleMiddleware::class);
+        $this->app['router']->middleware('admin.auth', \Forone\Admin\Middleware\Authenticate::class);
+        $this->app['router']->middleware('admin.guest', \Forone\Admin\Middleware\RedirectIfAuthenticated::class);
 
         $this->app->bind(\Illuminate\Contracts\Auth\Registrar::class, \Forone\Admin\Services\Registrar::class);
     }

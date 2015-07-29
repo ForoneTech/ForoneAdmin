@@ -1,18 +1,44 @@
 # LaravelAdmin
 基于Laravel5.1封装的后台管理系统
 
-* publish views to app resources/views/vendor/forone
+To install this package you will need:
 
-    ```
-    php artisan vendor:publish --tag=views
-    ```
+- Laravel 5.1+
+- PHP 5.5.9+
 
-* publish config
+You must then modify your `composer.json` file and run `composer update` to include the latest version of the package in your project.
 
-    ```
-    php artisan vendor:publish --tag=config
-    ```
+```json
+"require": {
+    "forone/admin": "dev-master"
+}
+```
 
+Or you can run the `composer require` command from your terminal.
 
-* php artisan vendor:publish --force
+```
+composer require forone/admin:dev-master
+```
+
+> At this time the package is still in a developmental stage and as such does not have a **stable** release.
+> You may need to set your `minimum-stability` to `dev`.
+
+Once the package is installed the next step is dependant on which framework you're using.
+
+### Laravel
+
+Open `config/app.php` and register the required service provider.
+
+```php
+'providers' => [
+    Forone\Admin\Providers\ForoneServiceProvider::class
+]
+```
+
+If you'd like to make configuration changes in the configuration file you can pubish it with the following Aritsan command:
+
+```
+php artisan vendor:publish --provider="Forone\Admin\Providers\ForoneServiceProvider" --force
+```
+
 
