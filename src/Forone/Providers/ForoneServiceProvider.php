@@ -2,7 +2,6 @@
 namespace Forone\Admin\Providers;
 
 use Artesaos\Defender\Providers\DefenderServiceProvider;
-use Illuminate\Foundation\Exceptions\Handler;
 use Illuminate\Support\ServiceProvider;
 
 class ForoneServiceProvider extends ServiceProvider
@@ -12,7 +11,7 @@ class ForoneServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Handler $handler)
+    public function boot()
     {
         if (!$this->app->routesAreCached()) {
             require __DIR__ . '/../routes.php';
@@ -55,15 +54,14 @@ class ForoneServiceProvider extends ServiceProvider
 
     private function registerProvider()
     {
-//        $this->app->register(\Illuminate\Html\HtmlServiceProvider::class);
-//        $this->app->register(\Forone\Admin\Providers\ForoneHtmlServiceProvider::class);
-//        $this->app->register(\Artesaos\Defender\Providers\DefenderServiceProvider::class);
+        $this->app->register(\Artesaos\Defender\Providers\DefenderServiceProvider::class);
+        $this->app->register(\Illuminate\Html\HtmlServiceProvider::class);
+        $this->app->register(\Forone\Admin\Providers\ForoneHtmlServiceProvider::class);
     }
 
     private function registerAlias()
     {
-//        $this->app->alias('Form', \Illuminate\Html\FormFacade::class);
-//        $this->app->alias('Html', \Illuminate\Html\HtmlFacade::class);
+        $this->app->alias('Defender', \Artesaos\Defender\Facades\Defender::class);
     }
 
     /**

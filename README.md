@@ -27,7 +27,7 @@ Once the package is installed the next step is dependant on which framework you'
 
 ### Laravel
 
-Open `config/app.php` and register the required service provider.
+Open `config/app.php` and register the required service provider and aliases.
 
 ```php
 'providers' => [
@@ -35,10 +35,22 @@ Open `config/app.php` and register the required service provider.
 ]
 ```
 
+```php
+'aliases' => [
+    'Form'      => Illuminate\Html\FormFacade::class,
+    'Html'      => Illuminate\Html\HtmlFacade::class,
+]
+```
+
 If you'd like to make configuration changes in the configuration file you can pubish it with the following Aritsan command:
 
 ```
 php artisan vendor:publish --provider="Forone\Admin\Providers\ForoneServiceProvider" --force
+```
+
+Publishing Defender configuration file and migrations
+```
+php artisan vendor:publish --provider="Artesaos\Defender\Providers\DefenderServiceProvider::class"
 ```
 
 
