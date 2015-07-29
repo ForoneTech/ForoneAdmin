@@ -32,7 +32,7 @@ class AuthController extends BaseController {
     /**
      * @var string
      */
-    protected $redirectPath = 'admin/dashboard';
+    protected $redirectPath = 'admin/roles';
 
     /**
      * @var string
