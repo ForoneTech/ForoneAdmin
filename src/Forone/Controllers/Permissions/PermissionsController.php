@@ -93,7 +93,21 @@ class PermissionsController extends BaseController {
      */
     public function update($id, UpdatePermissionRequest $request)
     {
-        $data = $request->only(['name', 'readable_name', 'is_nav']);
+        $name = $request->get('name');
+        $readableName = $request->get('readable_name');
+        $count = Permission::whereName($name)->where('id', '!=', $id)->count();
+        if ($count > 0) {
+            return $this->redirectWithError('路由名称不能重复');
+        }
+        $count = Permission::whereEmail($readableName)->where('id', '!=', $id)->count();
+        if ($count > 0) {
+            return $this->redirectWithError('权限显示名称不能重复');
+        }
+
+        $data = [
+            'name' => $name,
+            'readable_name' => $readableName,
+        ];
         Permission::findOrFail($id)->update($data);
         return redirect()->route('admin.permissions.index');
     }

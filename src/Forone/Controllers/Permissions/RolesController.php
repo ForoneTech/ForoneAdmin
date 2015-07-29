@@ -14,6 +14,7 @@ use Artesaos\Defender\Permission;
 use Artesaos\Defender\Role;
 use Forone\Admin\Controllers\BaseController;
 use Forone\Admin\Requests\CreateRoleRequest;
+use Forone\Admin\Requests\UpdateRoleRequest;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -106,8 +107,13 @@ class RolesController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function update($id, CreateRoleRequest $request)
+    public function update($id, UpdateRoleRequest $request)
     {
+        $name = $request->get('name');
+        $count = Role::whereName($name)->where('id', '!=', $id)->count();
+        if ($count > 0) {
+            return $this->redirectWithError('角色名称不能重复');
+        }
         $data = $request->only('name');
         Role::findOrFail($id)->update($data);
         return redirect()->route('admin.roles.index');

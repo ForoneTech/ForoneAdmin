@@ -13,6 +13,7 @@ use Artesaos\Defender\Role;
 use Forone\Admin\Admin;
 use Forone\Admin\Controllers\BaseController;
 use Forone\Admin\Requests\CreateAdminRequest;
+use Forone\Admin\Requests\UpdateAdminRequest;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Http\Request;
 
@@ -114,9 +115,19 @@ class AdminsController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function update($id, CreateAdminRequest $request)
+    public function update($id, UpdateAdminRequest $request)
     {
-        Admin::findOrFail($id)->update($request->only(['name', 'password', 'email']));
+        $name = $request->get('name');
+        $email = $request->get('email');
+        $count = Admin::whereName($name)->where('id', '!=', $id)->count();
+        if ($count > 0) {
+            return $this->redirectWithError('名称不能重复');
+        }
+        $count = Admin::whereEmail($email)->where('id', '!=', $id)->count();
+        if ($count > 0) {
+            return $this->redirectWithError('邮箱不能重复');
+        }
+        Admin::findOrFail($id)->update($request->only(['name', 'email']));
         return redirect()->route('admin.admins.index');
     }
 
