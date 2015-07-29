@@ -31,14 +31,13 @@ class ForoneServiceProvider extends ServiceProvider
     {
         $this->registerCommands();
 
-//        $this->registerProvider();
-//        $this->registerAlias();
+        $this->registerProvider();
+
+        $this->registerAlias();
 
         // Controle de acesso mais simples, utiliza apenas os grupos
         $this->app['router']->middleware('needsRole', \Artesaos\Defender\Middlewares\NeedsRoleMiddleware::class);
     }
-
-
 
     private function registerCommands()
     {
@@ -49,15 +48,18 @@ class ForoneServiceProvider extends ServiceProvider
         ]);
     }
 
-//    private function registerProvider()
-//    {
+    private function registerProvider()
+    {
+        $this->app->register(\Illuminate\Html\HtmlServiceProvider::class);
+        $this->app->register(\Forone\Admin\Providers\ForoneHtmlServiceProvider::class);
 //        $this->app->register(\Artesaos\Defender\Providers\DefenderServiceProvider::class);
-//    }
-//
-//    private function registerAlias()
-//    {
-//        $this->app->alias('Defender', \Artesaos\Defender\Providers\DefenderServiceProvider::class);
-//    }
+    }
+
+    private function registerAlias()
+    {
+        $this->app->alias('Form', \Illuminate\Html\FormFacade::class);
+        $this->app->alias('Html', \Illuminate\Html\HtmlFacade::class);
+    }
 
     /**
      * Publish configuration file.

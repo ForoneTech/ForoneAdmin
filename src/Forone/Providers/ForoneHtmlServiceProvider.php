@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Providers;
-
+namespace Forone\Admin\Providers;
 
 use Form;
 use Html;

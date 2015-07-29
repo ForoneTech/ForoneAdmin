@@ -14,8 +14,10 @@
     "illuminate/html": "5.0.0",
     "artesaos/defender": "0.3.1"
   },
-  "psr-4": {
-    "Forone\\Admin\\": "src"
+  "autoload": {
+    "psr-4": {
+      "Forone\\Admin\\": "src"
+    }
   },
   "minimum-stability": "dev"
 }

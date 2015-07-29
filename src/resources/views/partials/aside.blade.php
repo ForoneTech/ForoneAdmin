@@ -21,12 +21,12 @@
             <div class="box-row">
                 <div class="box-cell scrollable hover">
                     <div class="box-inner">
-                        @include('partials.profile')
+                        @include('forone::partials.profile')
                         <div id="nav">
                             <nav ui-nav>
                                 <ul class="nav">
-                                    @inject('ns', 'App\Services\NavService')
-                                    @foreach(config('infinite.menus') as $title => $value)
+                                    @inject('ns', 'Forone\Admin\Services\NavService')
+                                    @foreach(config('forone.menus') as $title => $value)
                                         @can($value['permission_name'])
                                             <li class="{{ $ns->isActive($value['active_uri']) }}">
                                                 <a md-ink-ripple @if($value['is_redirect']) href='{{ route($value['route_name']) }}' @endif >

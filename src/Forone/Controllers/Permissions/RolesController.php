@@ -61,7 +61,7 @@ class RolesController extends BaseController {
         // 获取顶层权限
         $perms = Permission::all();
 
-        return $this->view(self::URI.'.index', compact('results', 'perms'));
+        return $this->view('forone::' . self::URI.'.index', compact('results', 'perms'));
     }
 
     /**
