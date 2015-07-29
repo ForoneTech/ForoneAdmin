@@ -49,8 +49,15 @@ php artisan vendor:publish --provider="Forone\Admin\Providers\ForoneServiceProvi
 ```
 
 Publishing Defender configuration file and migrations
+
 ```
 php artisan vendor:publish --provider="Artesaos\Defender\Providers\DefenderServiceProvider::class"
+```
+
+Init data
+
+```
+php artisan db:init
 ```
 
 
