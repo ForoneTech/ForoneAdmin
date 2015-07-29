@@ -2,6 +2,7 @@
 namespace Forone\Admin\Providers;
 
 use Artesaos\Defender\Providers\DefenderServiceProvider;
+use Illuminate\Foundation\Exceptions\Handler;
 use Illuminate\Support\ServiceProvider;
 
 class ForoneServiceProvider extends ServiceProvider
@@ -11,7 +12,7 @@ class ForoneServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Handler $handler)
     {
         if (!$this->app->routesAreCached()) {
             require __DIR__ . '/../routes.php';

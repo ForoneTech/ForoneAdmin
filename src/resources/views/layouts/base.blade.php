@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@yield('title')</title>
-    <meta name="description" content="material, material design, angular material, app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
+    <title>{{ $siteConfig['title'] }}</title>
+    <meta name="description" content="{{ $siteConfig['description'] }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     <link rel="stylesheet" href="{{ asset('vendor/forone/libs/assets/animate.css/animate.css" type="text/css') }}" />
