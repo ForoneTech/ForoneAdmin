@@ -1,6 +1,13 @@
 {
   "name": "forone/admin",
+  "type": "library",
   "description": "forone laravel 5.1 admin",
+  "keywords": [
+    "laravel 5",
+    "forone",
+    "admin"
+  ],
+  "homepage": "https://github.com/ForoneTech/LaravelAdmin",
   "authors": [
     {
       "name": "YuGang Yang",
