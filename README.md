@@ -1,5 +1,4 @@
-# LaravelAdmin
-基于Laravel5.1封装的后台管理系统
+### LaravelAdmin
 
 To install this package you will need:
 
@@ -60,4 +59,17 @@ Init data
 php artisan db:init
 ```
 
+###
+screenshots
+
+* web
+
+![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/login.png)
+![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/roles-index.jpg)
+
+* mobile
+
+![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/mobile-login.png)
+![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/mobile-roles-index.jpg)
+![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/mobile-aside.jpg)
 
