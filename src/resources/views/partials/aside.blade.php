@@ -12,7 +12,7 @@
                         <path d="M 8 80 L 50 0 L 50 100 Z" fill="#f3f3f3"/>
                         <path d="M 50 0 L 8 80 L 0 14 Z" fill="rgba(220, 220, 220, 0.6)"/>
                     </svg>
-                    <img src="/images/logo.png" alt="." style="max-height: 36px; display:none">
+                    <img src="{{ asset('vendor/forone/images/logo.png') }}" alt="." style="max-height: 36px; display:none">
                     <span class="hidden-folded m-l inline">{{ $siteConfig['site_name'] }}</span>
                 </a>
                 <!-- / brand -->

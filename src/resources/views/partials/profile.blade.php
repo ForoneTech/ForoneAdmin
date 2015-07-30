@@ -1,5 +1,5 @@
 <div class="p hidden-folded blue-50"
-     style="background-image:url({{ asset('images/bg.png') }}); background-size:cover">
+     style="background-image:url({{ asset('vendor/forone/images/bg.png') }}); background-size:cover">
     <div class="rounded w-64 bg-white inline pos-rlt">
         <img src="{{ asset('vendor/forone/images/a1.jpg') }}" class="img-responsive rounded">
     </div>

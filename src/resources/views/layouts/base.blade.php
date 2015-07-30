@@ -6,7 +6,7 @@
     <meta name="description" content="{{ $siteConfig['description'] }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-    <link rel="stylesheet" href="{{ asset('vendor/forone/libs/assets/animate.css/animate.css" type="text/css') }}" />
+    <link rel="stylesheet" href="{{ asset('vendor/forone/libs/assets/animate.css/animate.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('vendor/forone/libs/assets/font-awesome/css/font-awesome.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('vendor/forone/libs/jquery/bootstrap/dist/css/bootstrap.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('vendor/forone/libs/jquery/waves/dist/waves.css') }}" type="text/css" />
