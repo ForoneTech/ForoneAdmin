@@ -59,15 +59,14 @@ Init data
 php artisan db:init
 ```
 
-###
-screenshots
+### screenshots
 
-* web
+#### web
 
 ![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/login.png)
 ![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/roles-index.jpg)
 
-* mobile
+#### mobile
 
 ![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/mobile-login.png)
 ![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/mobile-roles-index.jpg)
