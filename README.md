@@ -1,4 +1,23 @@
-### LaravelAdmin
+### Features
+
+1. Role and permissions management
+2. Html and Form macros
+3. Rapid `Model` management
+
+### Screenshots
+
+#### Web
+
+![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/login.png)
+![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/roles-index.jpg)
+
+#### Mobile
+
+![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/mobile-login.png)
+![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/mobile-roles-index.jpg)
+![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/mobile-aside.jpg)
+
+### ForoneAdmin
 
 To install this package you will need:
 
@@ -59,16 +78,6 @@ Init data
 php artisan db:init
 ```
 
-### screenshots
 
-#### web
 
-![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/login.png)
-![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/roles-index.jpg)
-
-#### mobile
-
-![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/mobile-login.png)
-![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/mobile-roles-index.jpg)
-![](https://raw.githubusercontent.com/ForoneTech/screenshots/master/laravel-admin/mobile-aside.jpg)
 
