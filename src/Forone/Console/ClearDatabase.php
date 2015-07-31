@@ -2,6 +2,7 @@
 
 namespace Forone\Admin\Console;
 
+use Config;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -41,15 +42,25 @@ class ClearDatabase extends Command
     {
         $this->info('Database Drop Table Start...');
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-
-        foreach (DB::select('SHOW TABLES') as $k => $v) {
-            $tableName = array_values((array)$v)[0];
-            Schema::drop($tableName);
-            $this->info('Dropped: ' . $tableName);
+        if (Config::get('database.default') == 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        } else if (Config::get('database.default') == 'sqlite') {
+            DB::statement('PRAGMA foreign_keys = OFF');
         }
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        $tableNames = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
+
+        foreach ($tableNames as $v) {
+            Schema::drop($v);
+            $this->info('Dropped: ' . $v);
+        }
+
         $this->info('Database Drop Table Ended...');
+
+        if (Config::get('database.default') == 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        } else if (Config::get('database.default') == 'sqlite') {
+            DB::statement('PRAGMA foreign_keys = ON');
+        }
     }
 }
