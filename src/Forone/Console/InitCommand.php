@@ -44,8 +44,8 @@ class InitCommand extends Command
         $this->call('migrate');
         $roles = $this->initRoles();
         $this->initPerms();
-        $amdin = $this->initAdmins();
-        $this->initRoleUsers($amdin, $roles);
+        $admin = $this->initAdmins();
+        $this->initRoleUsers($admin, $roles);
     }
 
     /**
