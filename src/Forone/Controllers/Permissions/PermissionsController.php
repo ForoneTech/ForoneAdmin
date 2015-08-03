@@ -99,7 +99,7 @@ class PermissionsController extends BaseController {
         if ($count > 0) {
             return $this->redirectWithError('路由名称不能重复');
         }
-        $count = Permission::whereEmail($readableName)->where('id', '!=', $id)->count();
+        $count = Permission::whereReadableName($readableName)->where('id', '!=', $id)->count();
         if ($count > 0) {
             return $this->redirectWithError('权限显示名称不能重复');
         }
