@@ -137,6 +137,10 @@ class AdminsController extends BaseController {
     public function assignRole(Request $request)
     {
         $admin = Admin::findOrFail($request->get('id'));
+
+        // detach roles
+        $admin->roles()->detach();
+
         $role = Defender::findRoleById($request->get('role_id'));
         $admin->attachRole($role);
         return redirect()->route('admin.admins.index');
