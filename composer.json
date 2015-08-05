@@ -19,8 +19,10 @@
     "illuminate/routing": "5.1.*",
     "illuminate/support": "5.1.*",
     "illuminate/html": "5.0.0",
-    "artesaos/defender": "0.3.1",
     "doctrine/dbal": "^2.5"
+  },
+  "require-dev": {
+    "orangehill/iseed": "dev-master"
   },
   "autoload": {
     "psr-4": {

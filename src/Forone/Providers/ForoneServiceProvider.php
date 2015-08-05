@@ -49,6 +49,7 @@ class ForoneServiceProvider extends ServiceProvider
             \Forone\Admin\Console\ClearDatabase::class,
             \Forone\Admin\Console\InitCommand::class,
             \Forone\Admin\Console\Upgrade::class,
+            \Forone\Admin\Console\Backup::class,
         ]);
     }
 
@@ -57,6 +58,7 @@ class ForoneServiceProvider extends ServiceProvider
         $this->app->register(\Artesaos\Defender\Providers\DefenderServiceProvider::class);
         $this->app->register(\Illuminate\Html\HtmlServiceProvider::class);
         $this->app->register(\Forone\Admin\Providers\ForoneHtmlServiceProvider::class);
+        $this->app->register(\Orangehill\Iseed\IseedServiceProvider::class);
     }
 
     private function registerAlias()
