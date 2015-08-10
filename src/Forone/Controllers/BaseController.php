@@ -10,6 +10,7 @@ namespace Forone\Admin\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 
 class BaseController extends Controller
@@ -28,17 +29,48 @@ class BaseController extends Controller
         //share the config option to all the views
         View::share('siteConfig', config('forone.site_config'));
         if (!$this->pageTitle) {
-            $pageTitles = config('forone.nav_titles');
-            if ($pageTitles) {
-                $curRouteName = Route::currentRouteName();
-                if (array_key_exists($curRouteName, $pageTitles)) {
-                    $this->pageTitle = $pageTitles[$curRouteName];
+            $this->pageTitle = $this->loadPageTitle();
+        }
+        View::share('pageTitle', $this->pageTitle);
+    }
+
+    private function loadPageTitle()
+    {
+        $pageTitles = config('forone.nav_titles');
+        $curRouteName = Route::currentRouteName();
+        if (array_key_exists($curRouteName, $pageTitles)) {
+            return $pageTitles[$curRouteName];
+        } else { // load menus title
+            $url = URL::current();
+            $menus = config('forone.menus');
+            foreach ($menus as $title => $menu) {
+                if ($menu['children']) {
+                    foreach ($menu['children'] as $childTitle => $child) {
+                        $pageTitle = $this->parseTitle($childTitle, $url, $child['active_uri']);
+                        if ($pageTitle) {
+                            return $pageTitle;
+                        }
+                    }
                 } else {
-                    $this->pageTitle = $curRouteName;
+                    $pageTitle = $this->parseTitle($title, $url, $menu['active_uri']);
+                    if ($pageTitle) {
+                        return $pageTitle;
+                    }
                 }
             }
         }
-        View::share('pageTitle', $this->pageTitle);
+        return $curRouteName;
+    }
+
+    private function parseTitle($title, $currentUrl, $activeUrl)
+    {
+        $activeUrls = explode('|', $activeUrl);
+        foreach ($activeUrls as $activeUri) {
+            if (strripos($currentUrl, $activeUri)) {
+                return $title;
+            }
+        }
+        return null;
     }
 
     /**
