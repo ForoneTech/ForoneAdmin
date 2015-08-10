@@ -27,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Forone\\Admin\\": "src"
+      "Forone\\Admin\\": "src/Forone/"
     }
   },
   "minimum-stability": "dev"
