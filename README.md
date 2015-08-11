@@ -78,6 +78,23 @@ Init data
 php artisan db:init
 ```
 
+Backup database
+
+```
+php artisan db:backup
+```
+
+clear database
+
+```
+php artisan db:clear
+```
+
+upgrade database
+
+```
+php artisan db:upgrade
+```
 
 
 
