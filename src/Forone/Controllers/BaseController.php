@@ -44,7 +44,7 @@ class BaseController extends Controller
             $url = URL::current();
             $menus = config('forone.menus');
             foreach ($menus as $title => $menu) {
-                if ($menu['children']) {
+                if (array_key_exists('children', $menu) && $menu['children'] ) {
                     foreach ($menu['children'] as $childTitle => $child) {
                         $pageTitle = $this->parseTitle($childTitle, $url, $child['active_uri']);
                         if ($pageTitle) {
