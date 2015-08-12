@@ -1,21 +1,13 @@
-<?php
-/**
- * User : YuGang Yang
- * Date : 8/5/15
- * Time : 12:41
- * Email: smartydroid@gmail.com
- * QQ/Wechat: 11814169
- */
-
-namespace Forone\Admin\Console;
-
+<?php namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Database\Console\Migrations\BaseCommand;
+use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use Orangehill\Iseed\Facades\Iseed;
 
-class Backup extends Command
+class Backup extends BaseCommand
 {
 
     /**
@@ -33,13 +25,22 @@ class Backup extends Command
     protected $description = 'Database backup with ISeed.';
 
     /**
+     * The migrator instance.
+     *
+     * @var \Illuminate\Database\Migrations\Migrator
+     */
+    protected $migrator;
+
+    /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Filesystem $files)
     {
         parent::__construct();
+
+        $this->files = $files;
     }
 
     /**
@@ -49,13 +50,52 @@ class Backup extends Command
      */
     public function fire()
     {
-        //
         $this->info('Database Backup Start...');
-        $tableNames = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
-        foreach ($tableNames as $tableName) {
-            Iseed::generateSeed($tableName);
-            $this->info('Seeded: ' . $tableName);
+
+        $path = $this->getMigrationPath();
+        $files = $this->files->glob($path.'/*_*.php');
+        $files = array_map(function ($file) {
+            return str_replace('.php', '', basename($file));
+        }, $files);
+        sort($files);
+
+        $tables = [];
+        $fileNames = [];
+
+        foreach($files as $value){
+            $name = preg_replace('/.*create_(.*)_table/', '$1', $value);
+            array_push($fileNames, $name);
         }
+
+        foreach (DB::select('SHOW TABLES') as $k => $v) {
+            $tableName = array_values((array)$v)[0];
+            array_push($tables, $tableName);
+        }
+
+        foreach ($fileNames as $value) {
+            if(($key = array_search($value, $tables)) !== false) {
+                unset($tables[$key]);
+                Iseed::generateSeed($value);
+                $this->info($value . ' Seeded');
+            }else {
+                foreach($tables as $key => $tableName){
+                    if (strpos($value, $tableName) !== false) {
+                        unset($tables[$key]);
+                        Iseed::generateSeed($tableName);
+                        $this->info($tableName . ' Seeded');
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (count($tables)) {
+            foreach ($tables as $tableName) {
+                Iseed::generateSeed($tableName);
+                $this->info($tableName . ' Seeded');
+            }
+        }
+
         $this->info('Database Backup End...');
     }
 
