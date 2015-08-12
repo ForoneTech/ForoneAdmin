@@ -1,4 +1,4 @@
-<?php namespace App\Console\Commands;
+<?php namespace Forone\Admin\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
