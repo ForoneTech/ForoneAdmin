@@ -48,12 +48,15 @@ return [
         ],
     ],
 
+    'qiniu' => [
+        'host' => 'http://share.u.qiniudn.com', //your qiniu host url
+        'access_key' => '-S31BNj77Ilqwk5IN85PIBoGg8qlbkqwULiraG0x', //for test
+        'secret_key' => 'QoVdaBFZITDp9hD7ytvUKOMAgohKaB8oa11FJdxN', //for test
+        'bucket' => 'share'
+    ],
+
     'nav_titles'   => [
-        'admin.roles.index'        => '角色管理',
-        'admin.roles.create'       => '创建角色',
-        'admin.permissions.index'  => '权限管理',
-        'admin.permissions.create' => '创建权限',
-        'admin.admins.index'       => '管理员管理',
-        'admin.admins.create'      => '创建管理员管理',
+        //customize route title such as below:
+        //'admin.roles.index' => '角色管理'
     ],
 ];

@@ -26,3 +26,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin.auth', 'needsRole']],
     });
 
 });
+
+//upload
+Route::get('/admin/qiniu/upload-token', ['as'=>'admin.qiniu.upload-token', 'uses'=>'Forone\Admin\Controllers\Controller\QiniuController@token']);

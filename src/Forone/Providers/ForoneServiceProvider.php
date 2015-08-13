@@ -1,4 +1,11 @@
 <?php
+/**
+ * User: Mani Wang
+ * Date: 8/13/15
+ * Time: 9:16 PM
+ * Email: mani@forone.co
+ */
+
 namespace Forone\Admin\Providers;
 
 use Artesaos\Defender\Providers\DefenderServiceProvider;
@@ -35,7 +42,6 @@ class ForoneServiceProvider extends ServiceProvider
 
         $this->registerAlias();
 
-        // Controle de acesso mais simples, utiliza apenas os grupos
         $this->app['router']->middleware('needsRole', \Artesaos\Defender\Middlewares\NeedsRoleMiddleware::class);
         $this->app['router']->middleware('admin.auth', \Forone\Admin\Middleware\Authenticate::class);
         $this->app['router']->middleware('admin.guest', \Forone\Admin\Middleware\RedirectIfAuthenticated::class);
@@ -56,8 +62,11 @@ class ForoneServiceProvider extends ServiceProvider
     private function registerProvider()
     {
         $this->app->register(\Artesaos\Defender\Providers\DefenderServiceProvider::class);
+        $this->app->register(\Forone\Admin\Providers\ForoneValidatorProvider::class);
         $this->app->register(\Illuminate\Html\HtmlServiceProvider::class);
+        $this->app->register(\Forone\Admin\Providers\ForoneFormServiceProvider::class);
         $this->app->register(\Forone\Admin\Providers\ForoneHtmlServiceProvider::class);
+        $this->app->register(\Forone\Admin\Providers\QiniuUploadProvider::class);
         $this->app->register(\Orangehill\Iseed\IseedServiceProvider::class);
     }
 

@@ -1,19 +1,23 @@
 {
   "name": "forone/admin",
-  "type": "library",
-  "description": "forone laravel 5.1 admin",
-  "keywords": [
-    "laravel 5",
-    "forone",
-    "admin"
-  ],
+  "description": "Admin system based on Laravel 5.1",
   "homepage": "https://github.com/ForoneTech/LaravelAdmin",
+  "keywords": ["laravel 5", "forone", "admin"],
+  "type": "library",
+  "license": "MIT",
   "authors": [
     {
       "name": "YuGang Yang",
       "email": "smartydroid@gmail.com"
+    },
+    {
+      "name": "Mani Wang",
+      "email": "mani@forone.co"
     }
   ],
+  "support": {
+    "issues": "https://github.com/ForoneTech/LaravelAdmin/issues"
+  },
   "require": {
     "php": ">=5.5.9",
     "illuminate/routing": "5.1.*",
@@ -21,6 +25,9 @@
     "illuminate/html": "5.0.0",
     "artesaos/defender": "0.3.1",
     "doctrine/dbal": "^2.5",
+    "qiniu/php-sdk": "dev-master"
+  },
+  "require-dev": {
     "orangehill/iseed": "^2.0"
   },
   "autoload": {
