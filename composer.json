@@ -25,7 +25,7 @@
     "illuminate/html": "5.0.0",
     "artesaos/defender": "0.3.1",
     "doctrine/dbal": "^2.5",
-    "qiniu/php-sdk": "dev-master"
+    "qiniu/php-sdk": "~7.0"
   },
   "require-dev": {
     "orangehill/iseed": "^2.0"
