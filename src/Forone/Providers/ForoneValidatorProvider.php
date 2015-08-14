@@ -8,6 +8,7 @@
 
 namespace Forone\Admin\Providers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class ForoneValidatorProvider extends ServiceProvider {

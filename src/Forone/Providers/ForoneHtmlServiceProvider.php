@@ -11,7 +11,6 @@ namespace Forone\Admin\Providers;
 use Form;
 use Html;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class ForoneHtmlServiceProvider extends ServiceProvider

@@ -8,7 +8,6 @@
 
 namespace Forone\Admin\Providers;
 
-use Artesaos\Defender\Providers\DefenderServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class ForoneServiceProvider extends ServiceProvider
@@ -81,14 +80,14 @@ class ForoneServiceProvider extends ServiceProvider
     private function publishResources()
     {
         // publish views
-        $this->publishes([__DIR__.'/../../resources/views' => base_path('resources/views/vendor/foreone'),]);
+        $this->publishes([__DIR__ . '/../../resources/views' => base_path('resources/views/vendor/foreone'),]);
 
         // publish config
-        $this->publishes([__DIR__.'/../../config/config.php' => config_path('forone.php'),]);
-        $this->publishes([__DIR__.'/../../config/auth.php' => config_path('auth.php'),]);
+        $this->publishes([__DIR__ . '/../../config/config.php' => config_path('forone.php'),]);
+        $this->publishes([__DIR__ . '/../../config/auth.php' => config_path('auth.php'),]);
 
         // publish assets
-        $this->publishes([__DIR__.'/../../../public' => public_path('vendor/forone'),], 'public');
+        $this->publishes([__DIR__ . '/../../../public' => public_path('vendor/forone'),], 'public');
 
         // To register your package's views
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'forone');
@@ -99,6 +98,6 @@ class ForoneServiceProvider extends ServiceProvider
      */
     private function publishMigrations()
     {
-        $this->publishes([__DIR__.'/../../migrations/' => base_path('database/migrations')], 'migrations');
+        $this->publishes([__DIR__ . '/../../migrations/' => base_path('database/migrations')], 'migrations');
     }
 }
