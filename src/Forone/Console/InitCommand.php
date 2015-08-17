@@ -14,14 +14,14 @@ class InitCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'db:init';
+    protected $signature = 'forone:init';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Init Database.';
+    protected $description = 'Initialize';
 
     /**
      * Create a new command instance.

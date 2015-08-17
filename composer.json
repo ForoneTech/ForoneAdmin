@@ -23,9 +23,9 @@
     "illuminate/routing": "5.1.*",
     "illuminate/support": "5.1.*",
     "illuminate/html": "5.0.0",
-    "artesaos/defender": "0.3.1",
     "doctrine/dbal": "^2.5",
-    "qiniu/php-sdk": "~7.0"
+    "qiniu/php-sdk": "v7.0.4",
+    "zizaco/entrust": "dev-laravel-5"
   },
   "require-dev": {
     "orangehill/iseed": "^2.0"

@@ -13,6 +13,13 @@ use Illuminate\Support\ServiceProvider;
 class ForoneServiceProvider extends ServiceProvider
 {
     /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
+
+    /**
      * Bootstrap the application services.
      *
      * @return void
@@ -22,10 +29,12 @@ class ForoneServiceProvider extends ServiceProvider
         if (!$this->app->routesAreCached()) {
             require __DIR__ . '/../routes.php';
         }
-
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'admin');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'admin');
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'admin');
         $this->publishResources();
-
-        $this->publishMigrations();
+        $this->setLocale();
+        $this->app['events']->fire('admin.ready');
     }
 
     /**
@@ -36,15 +45,9 @@ class ForoneServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerCommands();
-
         $this->registerProvider();
-
         $this->registerAlias();
-
-        $this->app['router']->middleware('needsRole', \Artesaos\Defender\Middlewares\NeedsRoleMiddleware::class);
-        $this->app['router']->middleware('admin.auth', \Forone\Admin\Middleware\Authenticate::class);
-        $this->app['router']->middleware('admin.guest', \Forone\Admin\Middleware\RedirectIfAuthenticated::class);
-
+        $this->registerMiddleware();
         $this->app->bind(\Illuminate\Contracts\Auth\Registrar::class, \Forone\Admin\Services\Registrar::class);
     }
 
@@ -60,7 +63,7 @@ class ForoneServiceProvider extends ServiceProvider
 
     private function registerProvider()
     {
-        $this->app->register(\Artesaos\Defender\Providers\DefenderServiceProvider::class);
+        $this->app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
         $this->app->register(\Forone\Admin\Providers\ForoneValidatorProvider::class);
         $this->app->register(\Illuminate\Html\HtmlServiceProvider::class);
         $this->app->register(\Forone\Admin\Providers\ForoneFormServiceProvider::class);
@@ -71,7 +74,7 @@ class ForoneServiceProvider extends ServiceProvider
 
     private function registerAlias()
     {
-        $this->app->alias('Defender', \Artesaos\Defender\Facades\Defender::class);
+        $this->app->alias('Entrust', \Zizaco\Entrust\EntrustFacade::class);
     }
 
     /**
@@ -80,17 +83,13 @@ class ForoneServiceProvider extends ServiceProvider
     private function publishResources()
     {
         // publish views
-        $this->publishes([__DIR__ . '/../../resources/views' => base_path('resources/views/vendor/foreone'),]);
+//        $this->publishes([__DIR__ . '/../../resources/views' => base_path('resources/views/vendor/foreone'),]);
 
         // publish config
         $this->publishes([__DIR__ . '/../../config/config.php' => config_path('forone.php'),]);
-        $this->publishes([__DIR__ . '/../../config/auth.php' => config_path('auth.php'),]);
 
         // publish assets
         $this->publishes([__DIR__ . '/../../../public' => public_path('vendor/forone'),], 'public');
-
-        // To register your package's views
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'forone');
     }
 
     /**
@@ -99,5 +98,25 @@ class ForoneServiceProvider extends ServiceProvider
     private function publishMigrations()
     {
         $this->publishes([__DIR__ . '/../../migrations/' => base_path('database/migrations')], 'migrations');
+    }
+
+    /**
+     * Sets the locale if it exists in the session and also exists in the locales option
+     *
+     * @return void
+     */
+    public function setLocale()
+    {
+        if ($locale = $this->app->session->get('admin_locale'))
+        {
+            $this->app->setLocale($locale);
+        }
+    }
+
+    private function registerMiddleware()
+    {
+        $this->app['router']->middleware('admin.permission', \Forone\Admin\Middleware\EntrustPermission::class);
+        $this->app['router']->middleware('admin.auth', \Forone\Admin\Middleware\Authenticate::class);
+        $this->app['router']->middleware('admin.guest', \Forone\Admin\Middleware\RedirectIfAuthenticated::class);
     }
 }

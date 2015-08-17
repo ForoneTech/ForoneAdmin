@@ -4,64 +4,8 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bda23382b017dfed9a9dbd546ba79a35",
+    "hash": "2bf53fcee9039f7708f7ee37f4368be0",
     "packages": [
-        {
-            "name": "artesaos/defender",
-            "version": "v0.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/artesaos/defender.git",
-                "reference": "2f20d19da5407e6e860ef3eae7e24772acf26a29"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/artesaos/defender/zipball/2f20d19da5407e6e860ef3eae7e24772acf26a29",
-                "reference": "2f20d19da5407e6e860ef3eae7e24772acf26a29",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "~5.1",
-                "illuminate/database": "~5.1",
-                "illuminate/http": "~5.1",
-                "illuminate/support": "~5.1",
-                "illuminate/view": "~5.1",
-                "php": ">=5.5.9"
-            },
-            "require-dev": {
-                "fabpot/php-cs-fixer": "~2.0",
-                "fzaninotto/faker": "~1.5",
-                "orchestra/testbench": "~3.0",
-                "phpspec/phpspec": "~2.1",
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Artesaos\\Defender\\": "src/Defender/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andreo Vieira",
-                    "email": "andreoav@gmail.com"
-                },
-                {
-                    "name": "Vagner do Carmo",
-                    "email": "vluzrmos@gmail.com"
-                },
-                {
-                    "name": "Luiz Vinicius Reis",
-                    "email": "luiz.vinicius73@gmail.com"
-                }
-            ],
-            "description": "Roles & Permissions for Laravel 5",
-            "time": "2015-07-10 20:23:07"
-        },
         {
             "name": "danielstjules/stringy",
             "version": "1.x-dev",
@@ -588,17 +532,68 @@
             "time": "2014-09-09 13:34:57"
         },
         {
+            "name": "illuminate/console",
+            "version": "5.1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/console.git",
+                "reference": "264faf5fa864f854ce3d000726bf5f420ca7b67b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/illuminate/console/264faf5fa864f854ce3d000726bf5f420ca7b67b.zip",
+                "reference": "264faf5fa864f854ce3d000726bf5f420ca7b67b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.1.*",
+                "illuminate/support": "5.1.*",
+                "nesbot/carbon": "~1.19",
+                "php": ">=5.5.9",
+                "symfony/console": "2.7.*"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Required to use the thenPing method on schedules (~5.3|~6.0).",
+                "mtdowling/cron-expression": "Required to use scheduling component (~1.0).",
+                "symfony/process": "Required to use scheduling component (2.7.*)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Console\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "The Illuminate Console package.",
+            "homepage": "http://laravel.com",
+            "time": "2015-08-01 00:02:33"
+        },
+        {
             "name": "illuminate/container",
             "version": "5.1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "cfec9b4a49b0c4be1fb34d6ed948245ea36a1f32"
+                "reference": "bf4f222fdd9661a8a36b96c6659c468639b22688"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/cfec9b4a49b0c4be1fb34d6ed948245ea36a1f32",
-                "reference": "cfec9b4a49b0c4be1fb34d6ed948245ea36a1f32",
+                "url": "http://packagist.phpcomposer.com/files/illuminate/container/bf4f222fdd9661a8a36b96c6659c468639b22688.zip",
+                "reference": "bf4f222fdd9661a8a36b96c6659c468639b22688",
                 "shasum": ""
             },
             "require": {
@@ -628,7 +623,7 @@
             ],
             "description": "The Illuminate Container package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-13 00:40:15"
+            "time": "2015-08-01 00:02:33"
         },
         {
             "name": "illuminate/contracts",
@@ -636,12 +631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "46914ed2aefc995b26a54bb8ea46db61d478e116"
+                "reference": "efde66da947d295e2a3175cb990f87fc293595e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/46914ed2aefc995b26a54bb8ea46db61d478e116",
-                "reference": "46914ed2aefc995b26a54bb8ea46db61d478e116",
+                "url": "http://packagist.phpcomposer.com/files/illuminate/contracts/efde66da947d295e2a3175cb990f87fc293595e6.zip",
+                "reference": "efde66da947d295e2a3175cb990f87fc293595e6",
                 "shasum": ""
             },
             "require": {
@@ -670,161 +665,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "http://laravel.com",
-            "time": "2015-07-27 13:46:23"
-        },
-        {
-            "name": "illuminate/database",
-            "version": "5.1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/illuminate/database.git",
-                "reference": "ce7789136d1f6523af61d303b08ad0dc619602fe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/ce7789136d1f6523af61d303b08ad0dc619602fe",
-                "reference": "ce7789136d1f6523af61d303b08ad0dc619602fe",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/container": "5.1.*",
-                "illuminate/contracts": "5.1.*",
-                "illuminate/support": "5.1.*",
-                "nesbot/carbon": "~1.19",
-                "php": ">=5.5.9"
-            },
-            "suggest": {
-                "doctrine/dbal": "Required to rename columns and drop SQLite columns (~2.4).",
-                "fzaninotto/faker": "Required to use the eloquent factory builder (~1.4).",
-                "illuminate/console": "Required to use the database commands (5.1.*).",
-                "illuminate/events": "Required to use the observers with Eloquent (5.1.*).",
-                "illuminate/filesystem": "Required to use the migrations (5.1.*)."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Illuminate\\Database\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "description": "The Illuminate Database package.",
-            "homepage": "http://laravel.com",
-            "keywords": [
-                "database",
-                "laravel",
-                "orm",
-                "sql"
-            ],
-            "time": "2015-07-26 16:33:02"
-        },
-        {
-            "name": "illuminate/events",
-            "version": "5.1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/illuminate/events.git",
-                "reference": "5e03a80092abbb1746a56e05f02997b71118c701"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/events/zipball/5e03a80092abbb1746a56e05f02997b71118c701",
-                "reference": "5e03a80092abbb1746a56e05f02997b71118c701",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/container": "5.1.*",
-                "illuminate/contracts": "5.1.*",
-                "illuminate/support": "5.1.*",
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Illuminate\\Events\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "description": "The Illuminate Events package.",
-            "homepage": "http://laravel.com",
-            "time": "2015-06-29 08:51:25"
-        },
-        {
-            "name": "illuminate/filesystem",
-            "version": "5.1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/illuminate/filesystem.git",
-                "reference": "69392e69f92d7268661e4ac4cab5df8e8f8f7938"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/filesystem/zipball/69392e69f92d7268661e4ac4cab5df8e8f8f7938",
-                "reference": "69392e69f92d7268661e4ac4cab5df8e8f8f7938",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "5.1.*",
-                "illuminate/support": "5.1.*",
-                "php": ">=5.5.9",
-                "symfony/finder": "2.7.*"
-            },
-            "suggest": {
-                "league/flysystem": "Required to use the Flysystem local and FTP drivers (~1.0).",
-                "league/flysystem-aws-s3-v3": "Required to use the Flysystem S3 driver (~1.0).",
-                "league/flysystem-rackspace": "Required to use the Flysystem Rackspace driver (~1.0)."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Illuminate\\Filesystem\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "description": "The Illuminate Filesystem package.",
-            "homepage": "http://laravel.com",
-            "time": "2015-07-11 20:41:11"
+            "time": "2015-08-01 00:02:33"
         },
         {
             "name": "illuminate/html",
@@ -878,12 +719,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
-                "reference": "cfdf2789aa871af7c4c418d0f18c9c4f7c8126be"
+                "reference": "ad2b8e306ec54f1b2bb15214d645d00273c0c199"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/http/zipball/cfdf2789aa871af7c4c418d0f18c9c4f7c8126be",
-                "reference": "cfdf2789aa871af7c4c418d0f18c9c4f7c8126be",
+                "url": "http://packagist.phpcomposer.com/files/illuminate/http/ad2b8e306ec54f1b2bb15214d645d00273c0c199.zip",
+                "reference": "ad2b8e306ec54f1b2bb15214d645d00273c0c199",
                 "shasum": ""
             },
             "require": {
@@ -916,7 +757,7 @@
             ],
             "description": "The Illuminate Http package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-29 16:31:16"
+            "time": "2015-08-01 00:02:33"
         },
         {
             "name": "illuminate/pipeline",
@@ -968,12 +809,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/routing.git",
-                "reference": "bf60f06185c9b02eaafb8dfc03a1c3ac6bcec59e"
+                "reference": "8f0ca78b2864d7c18b3f53aaca634d7caa620cab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/routing/zipball/bf60f06185c9b02eaafb8dfc03a1c3ac6bcec59e",
-                "reference": "bf60f06185c9b02eaafb8dfc03a1c3ac6bcec59e",
+                "url": "http://packagist.phpcomposer.com/files/illuminate/routing/8f0ca78b2864d7c18b3f53aaca634d7caa620cab.zip",
+                "reference": "8f0ca78b2864d7c18b3f53aaca634d7caa620cab",
                 "shasum": ""
             },
             "require": {
@@ -1014,7 +855,7 @@
             ],
             "description": "The Illuminate Routing package.",
             "homepage": "http://laravel.com",
-            "time": "2015-07-23 10:38:08"
+            "time": "2015-08-01 00:02:33"
         },
         {
             "name": "illuminate/session",
@@ -1022,12 +863,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
-                "reference": "eb5c227539c1b5b301d91572a9855d200cc55e46"
+                "reference": "57972f31b3bcd7996e7ce1a89d567904bd2282f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/session/zipball/eb5c227539c1b5b301d91572a9855d200cc55e46",
-                "reference": "eb5c227539c1b5b301d91572a9855d200cc55e46",
+                "url": "http://packagist.phpcomposer.com/files/illuminate/session/57972f31b3bcd7996e7ce1a89d567904bd2282f1.zip",
+                "reference": "57972f31b3bcd7996e7ce1a89d567904bd2282f1",
                 "shasum": ""
             },
             "require": {
@@ -1064,7 +905,7 @@
             ],
             "description": "The Illuminate Session package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-30 21:20:49"
+            "time": "2015-08-01 00:02:33"
         },
         {
             "name": "illuminate/support",
@@ -1072,12 +913,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "a07f2a74142cff35b9139b8ab52aa911c174704b"
+                "reference": "d6df7e5cfc11f64948d084551e9ad865a6183820"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/a07f2a74142cff35b9139b8ab52aa911c174704b",
-                "reference": "a07f2a74142cff35b9139b8ab52aa911c174704b",
+                "url": "http://packagist.phpcomposer.com/files/illuminate/support/d6df7e5cfc11f64948d084551e9ad865a6183820.zip",
+                "reference": "d6df7e5cfc11f64948d084551e9ad865a6183820",
                 "shasum": ""
             },
             "require": {
@@ -1117,54 +958,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "http://laravel.com",
-            "time": "2015-07-20 16:31:36"
-        },
-        {
-            "name": "illuminate/view",
-            "version": "5.1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/illuminate/view.git",
-                "reference": "3a9508630c8690d8b0329099b389352050a93dfd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/view/zipball/3a9508630c8690d8b0329099b389352050a93dfd",
-                "reference": "3a9508630c8690d8b0329099b389352050a93dfd",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/container": "5.1.*",
-                "illuminate/contracts": "5.1.*",
-                "illuminate/events": "5.1.*",
-                "illuminate/filesystem": "5.1.*",
-                "illuminate/support": "5.1.*",
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Illuminate\\View\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "description": "The Illuminate View package.",
-            "homepage": "http://laravel.com",
-            "time": "2015-07-17 15:21:21"
+            "time": "2015-08-01 00:02:33"
         },
         {
             "name": "nesbot/carbon",
@@ -1261,16 +1055,16 @@
         },
         {
             "name": "qiniu/php-sdk",
-            "version": "dev-master",
+            "version": "v7.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/qiniu/php-sdk.git",
-                "reference": "922c3ef9a45a513d30b73b5f4fcb99d6b5fe36ad"
+                "reference": "a7c996cdf91e7059ce3da203ed9b246877f0a266"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://packagist.phpcomposer.com/files/qiniu/php-sdk/922c3ef9a45a513d30b73b5f4fcb99d6b5fe36ad.zip",
-                "reference": "922c3ef9a45a513d30b73b5f4fcb99d6b5fe36ad",
+                "url": "http://packagist.phpcomposer.com/files/qiniu/php-sdk/a7c996cdf91e7059ce3da203ed9b246877f0a266.zip",
+                "reference": "a7c996cdf91e7059ce3da203ed9b246877f0a266",
                 "shasum": ""
             },
             "require": {
@@ -1308,7 +1102,7 @@
                 "sdk",
                 "storage"
             ],
-            "time": "2015-08-03 09:00:34"
+            "time": "2015-07-24 01:24:17"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -1385,17 +1179,74 @@
             "time": "2015-06-24 03:16:23"
         },
         {
+            "name": "symfony/console",
+            "version": "2.7.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Console.git",
+                "reference": "d6cf02fe73634c96677e428f840704bfbcaec29e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/symfony/Console/d6cf02fe73634c96677e428f840704bfbcaec29e.zip",
+                "reference": "d6cf02fe73634c96677e428f840704bfbcaec29e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/event-dispatcher": "~2.1",
+                "symfony/phpunit-bridge": "~2.7",
+                "symfony/process": "~2.1"
+            },
+            "suggest": {
+                "psr/log": "For using the console logger",
+                "symfony/event-dispatcher": "",
+                "symfony/process": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Console\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Console Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-07-28 15:18:12"
+        },
+        {
             "name": "symfony/debug",
             "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Debug.git",
-                "reference": "d1114d892ae70f833871dc55599f17084191efaa"
+                "reference": "e6ce720c140d144e2b2e2b14d36b887011e2a578"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Debug/zipball/d1114d892ae70f833871dc55599f17084191efaa",
-                "reference": "d1114d892ae70f833871dc55599f17084191efaa",
+                "url": "http://packagist.phpcomposer.com/files/symfony/Debug/e6ce720c140d144e2b2e2b14d36b887011e2a578.zip",
+                "reference": "e6ce720c140d144e2b2e2b14d36b887011e2a578",
                 "shasum": ""
             },
             "require": {
@@ -1407,13 +1258,8 @@
             },
             "require-dev": {
                 "symfony/class-loader": "~2.2|~3.0.0",
-                "symfony/http-foundation": "~2.1|~3.0.0",
                 "symfony/http-kernel": "~2.3.24|~2.5.9|~2.6,>=2.6.2|~3.0.0",
                 "symfony/phpunit-bridge": "~2.7|~3.0.0"
-            },
-            "suggest": {
-                "symfony/http-foundation": "",
-                "symfony/http-kernel": ""
             },
             "type": "library",
             "extra": {
@@ -1442,7 +1288,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-09 16:11:14"
+            "time": "2015-08-01 06:34:55"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1557,12 +1403,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "863af6898081b34c65d42100c370b9f3c51b70ca"
+                "reference": "38c326b689dda8f33223a74e30c42526c684fe2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/863af6898081b34c65d42100c370b9f3c51b70ca",
-                "reference": "863af6898081b34c65d42100c370b9f3c51b70ca",
+                "url": "http://packagist.phpcomposer.com/files/symfony/HttpFoundation/38c326b689dda8f33223a74e30c42526c684fe2e.zip",
+                "reference": "38c326b689dda8f33223a74e30c42526c684fe2e",
                 "shasum": ""
             },
             "require": {
@@ -1602,7 +1448,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-22 10:11:00"
+            "time": "2015-08-05 15:45:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -1610,12 +1456,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "35349fb0f641ef27237cbbb88a789d52be3f11c8"
+                "reference": "4ae2f30c63b4814db8b3a1d5471788e5a79f9c37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/35349fb0f641ef27237cbbb88a789d52be3f11c8",
-                "reference": "35349fb0f641ef27237cbbb88a789d52be3f11c8",
+                "url": "http://packagist.phpcomposer.com/files/symfony/HttpKernel/4ae2f30c63b4814db8b3a1d5471788e5a79f9c37.zip",
+                "reference": "4ae2f30c63b4814db8b3a1d5471788e5a79f9c37",
                 "shasum": ""
             },
             "require": {
@@ -1682,7 +1528,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-26 18:11:55"
+            "time": "2015-07-31 13:51:28"
         },
         {
             "name": "symfony/routing",
@@ -1690,12 +1536,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing.git",
-                "reference": "ea9134f277162b02e5f80ac058b75a77637b0d26"
+                "reference": "71fed8c6e21f6925c67ea2d4c7365a50d1989055"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Routing/zipball/ea9134f277162b02e5f80ac058b75a77637b0d26",
-                "reference": "ea9134f277162b02e5f80ac058b75a77637b0d26",
+                "url": "http://packagist.phpcomposer.com/files/symfony/Routing/71fed8c6e21f6925c67ea2d4c7365a50d1989055.zip",
+                "reference": "71fed8c6e21f6925c67ea2d4c7365a50d1989055",
                 "shasum": ""
             },
             "require": {
@@ -1753,7 +1599,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2015-07-09 16:07:40"
+            "time": "2015-08-05 15:45:00"
         },
         {
             "name": "symfony/translation",
@@ -1815,6 +1661,73 @@
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
             "time": "2015-07-10 04:29:01"
+        },
+        {
+            "name": "zizaco/entrust",
+            "version": "dev-laravel-5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Zizaco/entrust.git",
+                "reference": "3a768eb52300ec4efe9d6a6685b9bf0db6a50ffd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/Zizaco/entrust/3a768eb52300ec4efe9d6a6685b9bf0db6a50ffd.zip",
+                "reference": "3a768eb52300ec4efe9d6a6685b9bf0db6a50ffd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/database": "~5.0",
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "~4.1",
+                "sami/sami": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/commands"
+                ],
+                "psr-4": {
+                    "Zizaco\\Entrust\\": "src/Entrust/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Elkins",
+                    "homepage": "http://andrewelkins.com"
+                },
+                {
+                    "name": "Zizaco Zizuini",
+                    "email": "zizaco@gmail.com"
+                },
+                {
+                    "name": "Ben Batschelet",
+                    "homepage": "http://github.com/bbatsche"
+                },
+                {
+                    "name": "Michele Angioni",
+                    "email": "michele.angioni@gmail.com"
+                }
+            ],
+            "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
+            "keywords": [
+                "acl",
+                "auth",
+                "illuminate",
+                "laravel",
+                "permission",
+                "roles"
+            ],
+            "time": "2015-07-09 16:32:53"
         }
     ],
     "packages-dev": [
@@ -1871,7 +1784,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "qiniu/php-sdk": 20
+        "zizaco/entrust": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
