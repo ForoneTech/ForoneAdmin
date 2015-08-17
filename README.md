@@ -35,7 +35,7 @@ You must then modify your `composer.json` file and run `composer update` to incl
 Or you can run the `composer require` command from your terminal.
 
 ```
-composer require forone/admin:dev-master
+composer require forone/admin:1.x-dev
 ```
 
 > At this time the package is still in a developmental stage and as such does not have a **stable** release.

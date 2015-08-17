@@ -74,6 +74,8 @@ class ForoneServiceProvider extends ServiceProvider
 
     private function registerAlias()
     {
+        $this->app->alias('Form',\Illuminate\Html\FormFacade::class);
+        $this->app->alias('Html',\Illuminate\Html\HtmlFacade::class);
         $this->app->alias('Entrust', \Zizaco\Entrust\EntrustFacade::class);
     }
 
