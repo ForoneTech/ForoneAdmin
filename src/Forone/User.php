@@ -14,17 +14,18 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
-class Admin extends Model implements AuthenticatableContract, CanResetPasswordContract {
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
-    use Authenticatable, CanResetPassword, HasDefender;
+    use Authenticatable, CanResetPassword, EntrustUserTrait;
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'admins';
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.

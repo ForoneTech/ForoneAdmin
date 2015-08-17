@@ -2,9 +2,9 @@
 
 namespace Forone\Admin\Console;
 
-use Artesaos\Defender\Permission;
-use Artesaos\Defender\Role;
-use Forone\Admin\Admin;
+use Forone\Admin\Role;
+use Forone\Admin\User;
+use Forone\Admin\Permission;
 use Illuminate\Console\Command;
 
 class InitCommand extends Command
@@ -42,18 +42,12 @@ class InitCommand extends Command
     {
         $this->call('db:clear');
         $this->call('migrate');
-        $roles = $this->initRoles();
-        $this->initPerms();
-        $admin = $this->initAdmins();
-        $this->initRoleUsers($admin, $roles);
-    }
-
-    /**
-     *
-     */
-    private function initAdmins()
-    {
-        return Admin::create(['name' => '超级管理员', 'email' => env('ADMIN_EMAIL','admin@admin.com'), 'password' => bcrypt(env('ADMIN_PASSWORD','admin')),]);
+        $role = Role::create(['name' => '超级管理员']);
+        $permission = Permission::create(['name'=>'admin', 'display_name'=>'超级管理员权限']);
+        $user = User::create(['name' => '超级管理员', 'email' => env('ADMIN_EMAIL','admin@admin.com'), 'password' => bcrypt(env('ADMIN_PASSWORD','admin')),]);
+        $role->attachPermission($permission);
+        $user->attachRole($role);
+        $this->info('Forone initialized!');
     }
 
     /**
@@ -61,25 +55,14 @@ class InitCommand extends Command
      */
     private function initPerms()
     {
-        Permission::create(['name' => 'permissions#', 'readable_name' => '权限']);
-        Permission::create(['name' => 'admin.roles.index', 'readable_name' => '角色管理']);
-        Permission::create(['name' => 'admin.permissions.index', 'readable_name' => '权限管理']);
-        Permission::create(['name' => 'admin.admins.index', 'readable_name' => '管理员管理']);
+
     }
 
     /**
-     *
-     */
-    private function initRoles()
-    {
-        return Role::create(['name' => config('defender.superuser_role')]);
-    }
-
-    /**
-     * @param Admin $admin
+     * @param User $admin
      * @param Role $role
      */
-    private function initRoleUsers(Admin $admin, Role $role)
+    private function initRoleUsers(User $admin, Role $role)
     {
         $admin->attachRole($role);
     }

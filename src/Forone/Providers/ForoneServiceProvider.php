@@ -30,9 +30,10 @@ class ForoneServiceProvider extends ServiceProvider
             require __DIR__ . '/../routes.php';
         }
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'admin');
-        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'admin');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'forone');
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'admin');
         $this->publishResources();
+        $this->publishMigrations();
         $this->setLocale();
         $this->app['events']->fire('admin.ready');
     }
@@ -63,13 +64,15 @@ class ForoneServiceProvider extends ServiceProvider
 
     private function registerProvider()
     {
-        $this->app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
-        $this->app->register(\Forone\Admin\Providers\ForoneValidatorProvider::class);
+        $this->app->register(\Illuminate\Translation\TranslationServiceProvider::class);
         $this->app->register(\Illuminate\Html\HtmlServiceProvider::class);
+        $this->app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
+        $this->app->register(\Orangehill\Iseed\IseedServiceProvider::class);
+
         $this->app->register(\Forone\Admin\Providers\ForoneFormServiceProvider::class);
         $this->app->register(\Forone\Admin\Providers\ForoneHtmlServiceProvider::class);
+        $this->app->register(\Forone\Admin\Providers\ForoneValidatorProvider::class);
         $this->app->register(\Forone\Admin\Providers\QiniuUploadProvider::class);
-        $this->app->register(\Orangehill\Iseed\IseedServiceProvider::class);
     }
 
     private function registerAlias()
@@ -85,7 +88,7 @@ class ForoneServiceProvider extends ServiceProvider
     private function publishResources()
     {
         // publish views
-//        $this->publishes([__DIR__ . '/../../resources/views' => base_path('resources/views/vendor/foreone'),]);
+        $this->publishes([__DIR__ . '/../../resources/views' => base_path('resources/views/vendor/foreone'),]);
 
         // publish config
         $this->publishes([__DIR__ . '/../../config/config.php' => config_path('forone.php'),]);

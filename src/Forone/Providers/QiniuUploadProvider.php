@@ -10,6 +10,7 @@ namespace Forone\Admin\Providers;
 
 
 use Illuminate\Support\ServiceProvider;
+use Form;
 
 class QiniuUploadProvider extends ServiceProvider
 {

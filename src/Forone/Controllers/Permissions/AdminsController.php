@@ -10,7 +10,7 @@ namespace Forone\Admin\Controllers\Permissions;
 
 use Artesaos\Defender\Facades\Defender;
 use Artesaos\Defender\Role;
-use Forone\Admin\Admin;
+use Forone\Admin\User;
 use Forone\Admin\Controllers\BaseController;
 use Forone\Admin\Requests\CreateAdminRequest;
 use Forone\Admin\Requests\UpdateAdminRequest;
@@ -55,7 +55,7 @@ class AdminsController extends BaseController {
                 'value' => $role->id,
             ]);
         }
-        $paginate = Admin::with('roles')->orderBy('created_at', 'desc')->paginate();
+        $paginate = User::with('roles')->orderBy('created_at', 'desc')->paginate();
         $results['items'] = $paginate;
 
         return $this->view('forone::' . self::URI.'.index', compact('results', 'roles'));
@@ -85,7 +85,7 @@ class AdminsController extends BaseController {
      */
     public function show($id)
     {
-        $data = Admin::findOrFail($id);
+        $data = User::findOrFail($id);
         if ($data) {
             return $this->view('forone::' . self::URI. "/show", compact('data'));
         }else{
@@ -101,7 +101,7 @@ class AdminsController extends BaseController {
      */
     public function edit($id)
     {
-        $data = Admin::findOrFail($id);
+        $data = User::findOrFail($id);
         if ($data) {
             return $this->view('forone::' . self::URI. "/edit", compact('data'));
         }else{
@@ -119,15 +119,15 @@ class AdminsController extends BaseController {
     {
         $name = $request->get('name');
         $email = $request->get('email');
-        $count = Admin::whereName($name)->where('id', '!=', $id)->count();
+        $count = User::whereName($name)->where('id', '!=', $id)->count();
         if ($count > 0) {
             return $this->redirectWithError('名称不能重复');
         }
-        $count = Admin::whereEmail($email)->where('id', '!=', $id)->count();
+        $count = User::whereEmail($email)->where('id', '!=', $id)->count();
         if ($count > 0) {
             return $this->redirectWithError('邮箱不能重复');
         }
-        Admin::findOrFail($id)->update($request->only(['name', 'email']));
+        User::findOrFail($id)->update($request->only(['name', 'email']));
         return redirect()->route('admin.admins.index');
     }
 
@@ -136,7 +136,7 @@ class AdminsController extends BaseController {
      */
     public function assignRole(Request $request)
     {
-        $admin = Admin::findOrFail($request->get('id'));
+        $admin = User::findOrFail($request->get('id'));
 
         // detach roles
         $admin->roles()->detach();

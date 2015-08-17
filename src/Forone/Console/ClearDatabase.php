@@ -39,27 +39,29 @@ class ClearDatabase extends Command
      */
     public function handle()
     {
-        $this->info('Database Drop Table Start...');
+        if ($this->confirm("Clear database? [Yes|no]", "Yes")) {
+            $this->info('Clear database start');
 
-        if (config('database.default') == 'mysql') {
-            DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        } else if (config('database.default') == 'sqlite') {
-            DB::statement('PRAGMA foreign_keys = OFF');
-        }
+            if (config('database.default') == 'mysql') {
+                DB::statement('SET FOREIGN_KEY_CHECKS=0');
+            } else if (config('database.default') == 'sqlite') {
+                DB::statement('PRAGMA foreign_keys = OFF');
+            }
 
-        $tableNames = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
+            $tableNames = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
 
-        foreach ($tableNames as $v) {
-            Schema::drop($v);
-            $this->info('Dropped: ' . $v);
-        }
+            foreach ($tableNames as $v) {
+                Schema::drop($v);
+                $this->info('Dropped: ' . $v);
+            }
 
-        $this->info('Database Drop Table Ended...');
+            $this->info('Clear database end');
 
-        if (config('database.default') == 'mysql') {
-            DB::statement('SET FOREIGN_KEY_CHECKS=1');
-        } else if (config('database.default') == 'sqlite') {
-            DB::statement('PRAGMA foreign_keys = ON');
+            if (config('database.default') == 'mysql') {
+                DB::statement('SET FOREIGN_KEY_CHECKS=1');
+            } else if (config('database.default') == 'sqlite') {
+                DB::statement('PRAGMA foreign_keys = ON');
+            }
         }
     }
 }
