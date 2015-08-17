@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePasswordResetsTable extends Migration
+class CreateRoleUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,16 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('entrust.permission_role_table','permission_role'), function (Blueprint $table) {
-            $table->integer('permission_id')->unsigned();
+        Schema::create(config('entrust.role_user_table','role_user'), function (Blueprint $table) {
+            $table->integer('user_id')->unsigned();
             $table->integer('role_id')->unsigned();
 
-            $table->foreign('permission_id')->references('id')->on('permissions')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->primary(['permission_id', 'role_id']);
+            $table->primary(['user_id', 'role_id']);
         });
     }
 
@@ -32,6 +32,6 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('permission_role');
+        Schema::drop('role_user');
     }
 }
