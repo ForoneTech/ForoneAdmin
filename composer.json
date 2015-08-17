@@ -24,11 +24,11 @@
     "illuminate/support": "5.1.*",
     "illuminate/html": "5.0.0",
     "doctrine/dbal": "^2.5",
-    "qiniu/php-sdk": "v7.0.4",
-    "zizaco/entrust": "dev-laravel-5"
+    "qiniu/php-sdk": "v7.0.4"
   },
   "require-dev": {
-    "orangehill/iseed": "^2.0"
+    "orangehill/iseed": "^2.0",
+    "zizaco/entrust": "dev-laravel-5"
   },
   "autoload": {
     "psr-4": {
