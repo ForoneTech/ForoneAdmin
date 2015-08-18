@@ -9,6 +9,9 @@
  */
 
 use Illuminate\Support\ServiceProvider;
+use Zizaco\Entrust\ClassCreatorCommand;
+use Zizaco\Entrust\Entrust;
+use Zizaco\Entrust\MigrationCommand;
 
 class EntrustServiceProvider extends ServiceProvider
 {
