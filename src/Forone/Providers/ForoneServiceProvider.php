@@ -66,9 +66,9 @@ class ForoneServiceProvider extends ServiceProvider
     {
         $this->app->register(\Illuminate\Translation\TranslationServiceProvider::class);
         $this->app->register(\Illuminate\Html\HtmlServiceProvider::class);
-        $this->app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
         $this->app->register(\Orangehill\Iseed\IseedServiceProvider::class);
 
+        $this->app->register(EntrustServiceProvider::class);
         $this->app->register(\Forone\Admin\Providers\ForoneFormServiceProvider::class);
         $this->app->register(\Forone\Admin\Providers\ForoneHtmlServiceProvider::class);
         $this->app->register(\Forone\Admin\Providers\ForoneValidatorProvider::class);

@@ -1,4 +1,4 @@
-<?php namespace Zizaco\Entrust;
+<?php namespace Forone\Admin\Providers;
 
 /**
  * This file is part of Entrust,
