@@ -28,7 +28,7 @@ class EntrustServiceProvider extends ServiceProvider
     {
         // Publish config files
         $this->publishes([
-            __DIR__.'/../config/config.php' => config_path('entrust.php'),
+            __DIR__.'/../../config/entrust.php' => config_path('entrust.php'),
         ]);
 
         // Register commands
@@ -85,7 +85,7 @@ class EntrustServiceProvider extends ServiceProvider
     private function mergeConfig()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/entrust.php', 'entrust'
+            __DIR__.'/../../config/entrust.php', 'entrust'
         );
     }
 
