@@ -40,7 +40,6 @@ class InitCommand extends Command
      */
     public function handle()
     {
-        $this->call('db:clear');
         $this->call('migrate');
         $role = Role::create(['name' => '超级管理员']);
         $permission = Permission::create(['name'=>'admin', 'display_name'=>'超级管理员权限']);

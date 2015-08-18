@@ -24,6 +24,8 @@ class Role extends Model implements EntrustRoleInterface
      */
     protected $table;
 
+    protected $guarded = [];
+
     /**
      * Creates a new instance of the model.
      *
