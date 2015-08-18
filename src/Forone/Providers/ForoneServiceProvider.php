@@ -29,9 +29,9 @@ class ForoneServiceProvider extends ServiceProvider
         if (!$this->app->routesAreCached()) {
             require __DIR__ . '/../routes.php';
         }
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'admin');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'forone');
         $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'forone');
-        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'admin');
+        $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'forone');
         $this->publishResources();
         $this->publishMigrations();
         $this->setLocale();
