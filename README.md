@@ -86,7 +86,7 @@ Backup database
 php artisan db:backup
 ```
 
-<a id="user-content-test" class="anchor" href="#test" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+<a id="user-content-test" href="#test"></a>
 
 clear database
 
