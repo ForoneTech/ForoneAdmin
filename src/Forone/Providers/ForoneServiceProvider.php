@@ -69,10 +69,10 @@ class ForoneServiceProvider extends ServiceProvider
         $this->app->register(\Orangehill\Iseed\IseedServiceProvider::class);
 
         $this->app->register(EntrustServiceProvider::class);
-        $this->app->register(\Forone\Admin\Providers\ForoneFormServiceProvider::class);
-        $this->app->register(\Forone\Admin\Providers\ForoneHtmlServiceProvider::class);
-        $this->app->register(\Forone\Admin\Providers\ForoneValidatorProvider::class);
-        $this->app->register(\Forone\Admin\Providers\QiniuUploadProvider::class);
+        $this->app->register(ForoneFormServiceProvider::class);
+        $this->app->register(ForoneHtmlServiceProvider::class);
+        $this->app->register(ForoneValidatorProvider::class);
+        $this->app->register(QiniuUploadProvider::class);
     }
 
     private function registerAlias()

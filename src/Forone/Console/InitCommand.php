@@ -41,28 +41,11 @@ class InitCommand extends Command
     public function handle()
     {
         $this->call('migrate');
-        $role = Role::create(['name' => '超级管理员']);
+        $role = Role::create(['name'=>'admin', 'display_name'=>'超级管理员']);
         $permission = Permission::create(['name'=>'admin', 'display_name'=>'超级管理员权限']);
         $user = User::create(['name' => '超级管理员', 'email' => env('ADMIN_EMAIL','admin@admin.com'), 'password' => bcrypt(env('ADMIN_PASSWORD','admin')),]);
         $role->attachPermission($permission);
         $user->attachRole($role);
         $this->info('Forone initialized!');
-    }
-
-    /**
-     *
-     */
-    private function initPerms()
-    {
-
-    }
-
-    /**
-     * @param User $admin
-     * @param Role $role
-     */
-    private function initRoleUsers(User $admin, Role $role)
-    {
-        $admin->attachRole($role);
     }
 }

@@ -21,8 +21,6 @@ class UpdatePermissionRequest extends Request
     public function rules()
     {
         return [
-            'name'          => 'required|max:50',
-            'readable_name' => 'required|max:20',
         ];
     }
 

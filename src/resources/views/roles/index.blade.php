@@ -14,7 +14,7 @@
          {!! Form::hidden_input('id') !!}
          <div class="tab-content p m-b-md b-t b-t-2x">
              @foreach($perms as $perm)
-                 <label class="md-switch"><input type="checkbox" name="{{ $perm->name }}"><i class="indigo"></i>{{ $perm->readable_name }}</label>
+                 <label class="md-switch"><input type="checkbox" name="{{ $perm->name }}"><i class="indigo"></i>{{ $perm->description ? $perm->display_name .'「'.$perm->description.'」' : $perm->display_name }}</label>
              @endforeach
          </div>
          {!! Form::close() !!}
@@ -25,16 +25,6 @@
 @section('js')
     @parent
     <script type="text/javascript">
-        Array.prototype.contains = function(obj) {
-            var i = this.length;
-            while (i--) {
-                if (this[i] == obj) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         var datas = [];
         var data = '';
 

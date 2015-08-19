@@ -9,12 +9,11 @@
 namespace Forone\Admin\Controllers\Permissions;
 
 
-use Artesaos\Defender\Facades\Defender;
-use Artesaos\Defender\Permission;
-use Artesaos\Defender\Role;
 use Forone\Admin\Controllers\BaseController;
+use Forone\Admin\Permission;
 use Forone\Admin\Requests\CreateRoleRequest;
 use Forone\Admin\Requests\UpdateRoleRequest;
+use Forone\Admin\Role;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -25,14 +24,9 @@ use Illuminate\View\View;
  */
 class RolesController extends BaseController {
 
-    const URI = 'roles';
-    const NAME = '角色';
-
     function __construct()
     {
-        parent::__construct();
-        view()->share('page_name', self::NAME);
-        view()->share('uri', self::URI);
+        parent::__construct('roles', '角色');
     }
 
     public function index()
@@ -40,7 +34,8 @@ class RolesController extends BaseController {
         $results = [
             'columns' => [
                 ['编号', 'id'],
-                ['名称', 'name'],
+                ['系统名称','name'],
+                ['显示名称', 'display_name'],
                 ['创建时间', 'created_at'],
                 ['更新时间', 'updated_at'],
                 ['操作', 'buttons', function ($data) {
@@ -56,13 +51,17 @@ class RolesController extends BaseController {
             ]
         ];
 
-        $paginate = Role::with('permissions')->paginate();
+        $paginate = Role::orderBy('id', 'desc')->paginate();
         $results['items'] = $paginate;
 
         // 获取顶层权限
         $perms = Permission::all();
 
-        return $this->view('forone::' . self::URI.'.index', compact('results', 'perms'));
+        foreach ($paginate as $role) {
+            $role['permissions'] = $role->permissions();
+        }
+
+        return $this->view('forone::' . $this->uri.'.index', compact('results', 'perms'));
     }
 
     /**
@@ -95,7 +94,7 @@ class RolesController extends BaseController {
     {
         $data = Role::findOrFail($id);
         if ($data) {
-            return $this->view('forone::' . self::URI."/edit", compact('data'));
+            return $this->view('forone::' . $this->uri."/edit", compact('data'));
         } else {
             return $this->redirectWithError('数据未找到');
         }
@@ -109,14 +108,10 @@ class RolesController extends BaseController {
      */
     public function update($id, UpdateRoleRequest $request)
     {
-        $name = $request->get('name');
-        $count = Role::whereName($name)->where('id', '!=', $id)->count();
-        if ($count > 0) {
-            return $this->redirectWithError('角色名称不能重复');
-        }
-        $data = $request->only('name');
+        $data = $request->except('id', '_token');
         Role::findOrFail($id)->update($data);
-        return redirect()->route('admin.roles.index');
+
+        return $this->toIndex();
     }
 
     /**
@@ -124,21 +119,15 @@ class RolesController extends BaseController {
      */
     public function assignPermission(Request $request)
     {
-        $role = Defender::findRoleById($request->get('id'));
-        $permissionNameParams = $request->except(['_token', 'id']);
-        $permissionNames = array_keys($permissionNameParams);
-        $permissions = [];
-        foreach ($permissionNames as $permissionName) {
-            $permissions[] = str_replace('_', '.', $permissionName);
+        $role = Role::find($request->get('id'));
+        $permissions = $request->except(['_token', 'id']);
+        $role->detachPermissions($role->permissions());
+        foreach($permissions as $name => $status){
+            $permission = Permission::whereName($name)->first();
+            if ($status == 'on') {
+                $role->attachPermission($permission);
+            }
         }
-        // 删除 roles 所有权限
-        $role->revokePermissions();
-        $permissions = Permission::whereIn('name', $permissions)->get();
-        $permissions->each(function($per) use ($role) {
-            $role->attachPermission($per);
-        });
-
-        return redirect()->route('admin.roles.index');
+        return $this->toIndex('权限分配成功');
     }
-
 }

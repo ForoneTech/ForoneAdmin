@@ -1,4 +1,4 @@
-<?php
+<?php namespace Forone\Admin\Controllers\Upload;
 use Forone\Admin\Controllers\Controller;
 use Qiniu\Auth;
 

@@ -239,7 +239,7 @@ class ForoneHtmlServiceProvider extends ServiceProvider
     private function groupLabel()
     {
         Form::macro('group_label', function ($name, $label) {
-            $value = self::parseValue($this->model, $name);
+            $value = ForoneHtmlServiceProvider::parseValue($this->model, $name);
             return '<div class="control-group">
                         <label for="title" class="control-label">' . $label . '</label>
                         <div class="controls">

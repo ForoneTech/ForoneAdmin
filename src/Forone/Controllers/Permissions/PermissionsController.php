@@ -8,22 +8,17 @@
 
 namespace Forone\Admin\Controllers\Permissions;
 
-use Artesaos\Defender\Facades\Defender;
-use Artesaos\Defender\Permission;
 use Forone\Admin\Controllers\BaseController;
+use Forone\Admin\Permission;
 use Forone\Admin\Requests\CreatePermissionRequest;
 use Forone\Admin\Requests\UpdatePermissionRequest;
 
 class PermissionsController extends BaseController {
 
-    const URI = 'permissions';
-    const NAME = '权限';
-
     function __construct()
     {
-        parent::__construct();
-        view()->share('page_name', self::NAME);
-        view()->share('uri', self::URI);
+        parent::__construct('permissions', '权限');
+        $this->middleware('admin.permission', ['testsdf']);
     }
 
     public function index()
@@ -31,8 +26,8 @@ class PermissionsController extends BaseController {
         $results = [
             'columns' => [
                 ['编号', 'id'],
-                ['权限名', 'name'],
-                ['权限显示名称', 'readable_name'],
+                ['系统名称', 'name'],
+                ['显示名称', 'display_name'],
                 ['创建时间', 'created_at'],
                 ['更新时间', 'updated_at'],
                 ['操作', 'buttons', function ($data) {
@@ -43,10 +38,10 @@ class PermissionsController extends BaseController {
                 }]
             ]
         ];
-        $paginate = Permission::paginate();
+        $paginate = Permission::orderBy('id','desc')->paginate();
         $results['items'] = $paginate;
 
-        return $this->view('forone::' . self::URI.'.index', compact('results'));
+        return $this->view('forone::' . $this->uri.'.index', compact('results'));
     }
 
     /**
@@ -55,7 +50,7 @@ class PermissionsController extends BaseController {
      */
     public function create()
     {
-        return $this->view('forone::permissions.create');
+        return $this->view('forone::'.$this->uri.'.create');
     }
 
     /**
@@ -65,8 +60,8 @@ class PermissionsController extends BaseController {
      */
     public function store(CreatePermissionRequest $request)
     {
-        Permission::create($request->only(['name', 'readable_name', 'is_nav']));
-        return redirect()->route('admin.permissions.index');
+        Permission::create($request->except('id', '_token'));
+        return $this->toIndex('保存成功');
     }
 
     /**
@@ -77,9 +72,9 @@ class PermissionsController extends BaseController {
      */
     public function edit($id)
     {
-        $data = Defender::findPermissionById($id);
+        $data = Permission::find($id);
         if ($data) {
-            return view('forone::' . self::URI."/edit", compact('data'));
+            return view('forone::' . $this->uri."/edit", compact('data'));
         } else {
             return $this->redirectWithError('数据未找到');
         }
@@ -93,23 +88,10 @@ class PermissionsController extends BaseController {
      */
     public function update($id, UpdatePermissionRequest $request)
     {
-        $name = $request->get('name');
-        $readableName = $request->get('readable_name');
-        $count = Permission::whereName($name)->where('id', '!=', $id)->count();
-        if ($count > 0) {
-            return $this->redirectWithError('路由名称不能重复');
-        }
-        $count = Permission::whereReadableName($readableName)->where('id', '!=', $id)->count();
-        if ($count > 0) {
-            return $this->redirectWithError('权限显示名称不能重复');
-        }
-
-        $data = [
-            'name' => $name,
-            'readable_name' => $readableName,
-        ];
+        $data = $request->except('id', '_token');
         Permission::findOrFail($id)->update($data);
-        return redirect()->route('admin.permissions.index');
+
+        return $this->toIndex();
     }
 
 }

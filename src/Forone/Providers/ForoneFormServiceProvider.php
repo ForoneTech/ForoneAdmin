@@ -74,7 +74,7 @@ class ForoneFormServiceProvider extends ServiceProvider
     private function formText()
     {
         $handler = function ($name, $label, $placeholder = '', $percent = 0.5, $modal = false) {
-            $value = self::parseValue($this->model, $name);
+            $value = ForoneFormServiceProvider::parseValue($this->model, $name);
             $data = '';
             $input_col = 9;
             if (is_array($placeholder)) {
@@ -250,9 +250,9 @@ class ForoneFormServiceProvider extends ServiceProvider
 
     private function formSelect()
     {
-        Form::macro('form_select', function ($name, $label, $data, $percent = 0.5) {
+        Form::macro('form_select', function ($name, $label, $data, $percent = 0.5, $modal=false) {
             $result = '<div class="form-group col-sm-' . ($percent * 12) . '">
-                        ' . Form::form_label($label) . '
+                        ' . Form::form_label($label, $modal) . '
                         <div class="col-sm-9"><select class="form-control" name="' . $name . '">';
             foreach ($data as $item) {
                 $value = is_array($item) ? $item['value'] : $item;
@@ -298,7 +298,7 @@ class ForoneFormServiceProvider extends ServiceProvider
     private function formDate()
     {
         Form::macro('form_date', function ($name, $label, $placeholder = '', $percent = 0.5) {
-            $value = ForoneHtmlServiceProvider::parseValue($this->model, $name);
+            $value = ForoneFormServiceProvider::parseValue($this->model, $name);
             if (!is_string($placeholder)) {
                 $percent = $placeholder;
             }
@@ -314,7 +314,7 @@ class ForoneFormServiceProvider extends ServiceProvider
     private function formTime()
     {
         Form::macro('form_time', function ($name, $label, $placeholder = '', $percent = 0.5) {
-            $value = ForoneHtmlServiceProvider::parseValue($this->model, $name);
+            $value = ForoneFormServiceProvider::parseValue($this->model, $name);
             if (!is_string($placeholder)) {
                 $percent = $placeholder;
             }

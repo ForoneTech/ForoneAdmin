@@ -8,25 +8,19 @@
 
 namespace Forone\Admin\Controllers\Permissions;
 
-use Artesaos\Defender\Facades\Defender;
-use Artesaos\Defender\Role;
-use Forone\Admin\User;
 use Forone\Admin\Controllers\BaseController;
 use Forone\Admin\Requests\CreateAdminRequest;
 use Forone\Admin\Requests\UpdateAdminRequest;
+use Forone\Admin\Role;
+use Forone\Admin\User;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Http\Request;
 
 class AdminsController extends BaseController {
 
-    const URI = 'admins';
-    const NAME = '管理员';
-
     function __construct()
     {
-        parent::__construct();
-        view()->share('page_name', self::NAME);
-        view()->share('uri', self::URI);
+        parent::__construct('admins', '管理员');
     }
 
     public function index()
@@ -47,23 +41,20 @@ class AdminsController extends BaseController {
                 }]
             ]
         ];
-        $collection = Role::all();
-        $roles = [];
-        foreach ($collection as $role) {
-            array_push($roles, [
-                'label' => $role->name,
-                'value' => $role->id,
-            ]);
-        }
-        $paginate = User::with('roles')->orderBy('created_at', 'desc')->paginate();
+        $roles = Role::all();
+        $paginate = User::orderBy('created_at', 'desc')->paginate();
         $results['items'] = $paginate;
 
-        return $this->view('forone::' . self::URI.'.index', compact('results', 'roles'));
+        foreach ($paginate as $user) {
+            $user['roles'] = $user->roles()->get();
+        }
+
+        return $this->view('forone::' . $this->uri.'.index', compact('results', 'roles'));
     }
 
     public function create()
     {
-        return $this->view('forone::' . self::URI.'.create');
+        return $this->view('forone::' . $this->uri.'.create');
     }
 
     /**
@@ -87,7 +78,7 @@ class AdminsController extends BaseController {
     {
         $data = User::findOrFail($id);
         if ($data) {
-            return $this->view('forone::' . self::URI. "/show", compact('data'));
+            return $this->view('forone::' . $this->uri. "/show", compact('data'));
         }else{
             return $this->redirectWithError('数据未找到');
         }
@@ -103,7 +94,7 @@ class AdminsController extends BaseController {
     {
         $data = User::findOrFail($id);
         if ($data) {
-            return $this->view('forone::' . self::URI. "/edit", compact('data'));
+            return $this->view('forone::' . $this->uri. "/edit", compact('data'));
         }else{
             return $this->redirectWithError('数据未找到');
         }
@@ -136,14 +127,16 @@ class AdminsController extends BaseController {
      */
     public function assignRole(Request $request)
     {
-        $admin = User::findOrFail($request->get('id'));
-
-        // detach roles
-        $admin->roles()->detach();
-
-        $role = Defender::findRoleById($request->get('role_id'));
-        $admin->attachRole($role);
-        return redirect()->route('admin.admins.index');
+        $user = User::find($request->get('id'));
+        $roles = $request->except(['_token', 'id']);
+        $user->detachRoles($user->roles()->get());
+        foreach($roles as $name => $status){
+            $role = Role::whereName($name)->first();
+            if ($status == 'on') {
+                $user->attachRole($role);
+            }
+        }
+        return $this->toIndex('角色分配成功');
     }
 
 }

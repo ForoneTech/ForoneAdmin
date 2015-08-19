@@ -46,6 +46,16 @@
     </style>
 
     <script>
+        Array.prototype.contains = function(obj) {
+            var i = this.length;
+            while (i--) {
+                if (this[i] == obj) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         var init = [];
         window.onload = function () {
             init.forEach(function (f) {

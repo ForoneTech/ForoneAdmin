@@ -22,7 +22,6 @@ class CreatePermissionRequest extends Request
     {
         return [
             'name'          => 'required|max:50|unique:permissions',
-            'readable_name' => 'required|max:20',
         ];
     }
 

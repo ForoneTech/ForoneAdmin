@@ -4,15 +4,7 @@
             <div class="navbar md-whiteframe-z1 no-radius blue">
                 <!-- brand -->
                 <a class="navbar-brand">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                         x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"
-                         style="width: 24px; height: 24px;">
-                         <path d="M 50 0 L 100 14 L 92 80 Z" fill="rgba(139, 195, 74, 0.5)"/>
-                        <path d="M 92 80 L 50 0 L 50 100 Z" fill="rgba(139, 195, 74, 0.8)"/>
-                        <path d="M 8 80 L 50 0 L 50 100 Z" fill="#f3f3f3"/>
-                        <path d="M 50 0 L 8 80 L 0 14 Z" fill="rgba(220, 220, 220, 0.6)"/>
-                    </svg>
-                    <img src="{{ asset('vendor/forone/images/logo.png') }}" alt="." style="max-height: 36px; display:none">
+                    <img src="{{ asset($siteConfig['logo']) }}" alt="." style="width: 24px; height: 24px;">
                     <span class="hidden-folded m-l inline">{{ $siteConfig['site_name'] }}</span>
                 </a>
                 <!-- / brand -->
@@ -27,28 +19,28 @@
                                 <ul class="nav">
                                     @inject('ns', 'Forone\Admin\Services\NavService')
                                     @foreach(config('forone.menus') as $title => $value)
-                                        @can($value['permission_name'])
-                                            <li class="{{ $ns->isActive($value['active_uri']) }}">
-                                                <a md-ink-ripple @if($value['is_redirect']) href='{{ route($value['route_name']) }}' @endif >
-                                                    <i class="icon {{ $value['icon'] }} i-20"></i>
-                                                    @if(array_key_exists('children', $value) && count($value['children']))
-                                                        <span class="pull-right text-muted">
-                                                        <i class="fa fa-caret-down"></i>
-                                                    </span>
-                                                    @endif
-                                                    <span class="font-normal">{{ $title }}</span>
-                                                </a>
+                                        @if($ns->checkPermission($value))
+                                        <li class="{{ $ns->isActive($value) }}">
+                                            <a md-ink-ripple @if(array_key_exists('uri', $value)) href='{{ '/admin/'.$value['uri'] }}' @endif >
+                                                <i class="icon {{ $value['icon'] }} i-20"></i>
                                                 @if(array_key_exists('children', $value) && count($value['children']))
-                                                    <ul class="nav nav-sub">
-                                                        @foreach($value['children'] as $childTitle => $chidrenValue)
-                                                            <li class="{{ $ns->isActive($chidrenValue['active_uri']) }}">
-                                                                <a md-ink-ripple href='{{ route($chidrenValue['route_name']) }}'>{{ $childTitle }}</a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
+                                                    <span class="pull-right text-muted">
+                                                    <i class="fa fa-caret-down"></i>
+                                                </span>
                                                 @endif
-                                            </li>
-                                        @endcan
+                                                <span class="font-normal">{{ $title }}</span>
+                                            </a>
+                                            @if(array_key_exists('children', $value) && count($value['children']))
+                                                <ul class="nav nav-sub">
+                                                    @foreach($value['children'] as $childTitle => $chidrenValue)
+                                                        <li class="{{ $ns->isActive($chidrenValue) }}">
+                                                            <a md-ink-ripple href='{{ '/admin/'.$chidrenValue['uri'] }}'>{{ $childTitle }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </nav>

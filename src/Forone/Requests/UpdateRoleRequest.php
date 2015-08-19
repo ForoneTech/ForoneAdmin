@@ -20,7 +20,6 @@ class UpdateRoleRequest extends Request {
 	public function rules()
 	{
 		return [
-            'name' => 'required|max:20|unique:roles'
         ];
 	}
 

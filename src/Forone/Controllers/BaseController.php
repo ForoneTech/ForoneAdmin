@@ -20,57 +20,37 @@ class BaseController extends Controller
     protected $title;
     protected $pageTitle;
     protected $rules = [];
+    protected $uri = '';
 
-    function __construct()
+    function __construct($uri='', $name='')
     {
         $this->currentUser = Auth::user();
+        $this->uri = $uri;
         View::share('currentUser', $this->currentUser);
 
         //share the config option to all the views
         View::share('siteConfig', config('forone.site_config'));
-        if (!$this->pageTitle) {
-            $this->pageTitle = $this->loadPageTitle();
-        }
-        View::share('pageTitle', $this->pageTitle);
+        View::share('pageTitle', $this->loadPageTitle());
+        view()->share('page_name', $name);
+        view()->share('uri', $uri);
     }
 
     private function loadPageTitle()
     {
-        $pageTitles = config('forone.nav_titles');
-        $curRouteName = Route::currentRouteName();
-        if (array_key_exists($curRouteName, $pageTitles)) {
-            return $pageTitles[$curRouteName];
-        } else { // load menus title
-            $url = URL::current();
-            $menus = config('forone.menus');
-            foreach ($menus as $title => $menu) {
-                if (array_key_exists('children', $menu) && $menu['children'] ) {
-                    foreach ($menu['children'] as $childTitle => $child) {
-                        $pageTitle = $this->parseTitle($childTitle, $url, $child['active_uri']);
-                        if ($pageTitle) {
-                            return $pageTitle;
-                        }
+        $menus = config('forone.menus');
+        foreach ($menus as $title => $menu) {
+            if (array_key_exists('children', $menu) && $menu['children'] ) {
+                foreach ($menu['children'] as $childTitle => $child) {
+                    if (strripos(URL::current(), $child['uri'])) {
+                        return $title;
                     }
-                } else {
-                    $pageTitle = $this->parseTitle($title, $url, $menu['active_uri']);
-                    if ($pageTitle) {
-                        return $pageTitle;
-                    }
+                }
+            } else {
+                if (strripos(URL::current(), $menu['uri'])) {
+                    return $title;
                 }
             }
         }
-        return $curRouteName;
-    }
-
-    private function parseTitle($title, $currentUrl, $activeUrl)
-    {
-        $activeUrls = explode('|', $activeUrl);
-        foreach ($activeUrls as $activeUri) {
-            if (strripos($currentUrl, $activeUri)) {
-                return $title;
-            }
-        }
-        return null;
     }
 
     /**
@@ -94,4 +74,12 @@ class BaseController extends Controller
             ->withErrors(['default' => $error]);
     }
 
+    protected function toIndex($alert='')
+    {
+        $redirect = redirect()->route('admin.'.$this->uri.'.index');
+        if ($alert) {
+            $redirect->withErrors(['default' => $alert]);
+        }
+        return $redirect;
+    }
 }

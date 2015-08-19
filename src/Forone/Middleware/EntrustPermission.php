@@ -8,6 +8,8 @@
 
 namespace Forone\Admin\Middleware;
 
+use Closure;
+use Illuminate\Support\Facades\Redirect;
 
 class EntrustPermission {
 

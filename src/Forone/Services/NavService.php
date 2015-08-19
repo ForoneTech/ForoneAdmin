@@ -8,17 +8,19 @@
 
 namespace Forone\Admin\Services;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
 class NavService
 {
 
-    public function isActive($uri)
+    public function isActive($value)
     {
-        if (strripos($uri, '|')) {
-            $uris = explode('|', $uri);
-            foreach ($uris as $name) {
-                if (strripos(URL::current(), $name)) {
+        $uri = array_key_exists('uri', $value) ? $value['uri'] : '';
+        if (!$uri) {
+            $children = $value['children'];
+            foreach ($children as $child) {
+                if (strripos(URL::current(), $child['uri'])) {
                     return 'active';
                 }
             }
@@ -26,6 +28,11 @@ class NavService
             return 'active';
         }
         return '';
+    }
+
+    public function checkPermission($value)
+    {
+        return array_key_exists('permission', $value) ? Auth::user()->can($value['permission']) : true;
     }
 
 }

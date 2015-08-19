@@ -13,7 +13,7 @@ use Zizaco\Entrust\Traits\EntrustRoleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 
-class Role extends Model implements EntrustRoleInterface
+class PermissionRole extends Model implements EntrustRoleInterface
 {
     use EntrustRoleTrait;
 
@@ -34,14 +34,7 @@ class Role extends Model implements EntrustRoleInterface
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = Config::get('entrust.roles_table');
+        $this->table = Config::get('entrust.permission_role_table');
     }
 
-    public function permissions()
-    {
-        $permissions = Permission::join('permission_role', 'permissions.id', '=', 'permission_role.permission_id')
-            ->where('permission_role.role_id', '=', $this->id)
-            ->get();
-        return $permissions;
-    }
 }
