@@ -1,5 +1,3 @@
-[Test](#test)
-
 ### Features
 
 1. Role and permissions management
@@ -85,8 +83,6 @@ Backup database
 ```
 php artisan db:backup
 ```
-
-<a id="user-content-test" href="#test"></a>
 
 clear database
 
