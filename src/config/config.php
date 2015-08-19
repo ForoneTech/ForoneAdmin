@@ -7,56 +7,37 @@
  */
 
 return [
-    'site_config'  => [
+    'site_config'                 => [
         'site_name'   => 'your site name',
         'title'       => 'your site title',
-        'description' => 'you site description'
+        'description' => 'you site description',
+        'logo'        => 'vendor/forone/images/logo.png'
     ],
-    'RedirectAfterLoginPath' => 'admin/roles', // 登录后跳转页面
+    'RedirectAfterLoginPath'      => 'admin/roles', // 登录后跳转页面
     'RedirectIfAuthenticatedPath' => 'admin/roles', // 如果授权后直接跳转到指定页面
 
-    'menus'        => [
-        '权限' => [
-            'icon'            => 'mdi-toggle-radio-button-on',
-            'active_uri'      => 'roles|permissions|admins|navs',
-            'permission_name' => 'permissions#',
-            'route_name'      => 'permissions#',
-            'is_redirect'     => false,
-            'children'        => [
+    'menus'                       => [
+        '系统设置' => [
+            'icon'       => 'mdi-toggle-radio-button-on',
+            'permission' => 'admin',
+            'children'   => [
                 '角色管理'  => [
-                    'active_uri'      => 'roles',
-                    'icon'            => null,
-                    'permission_name' => 'admin.roles.index',
-                    'route_name'      => 'admin.roles.index',
-                    'is_redirect'     => true,
+                    'uri' => 'roles',
                 ],
                 '权限管理'  => [
-                    'active_uri'      => 'permissions',
-                    'icon'            => null,
-                    'permission_name' => 'admin.permissions.index',
-                    'route_name'      => 'admin.permissions.index',
-                    'is_redirect'     => true,
+                    'uri' => 'permissions',
                 ],
                 '管理员管理' => [
-                    'active_uri'      => 'admins',
-                    'icon'            => null,
-                    'permission_name' => 'admin.admins.index',
-                    'route_name'      => 'admin.admins.index',
-                    'is_redirect'     => true,
+                    'uri' => 'admins',
                 ]
             ],
         ],
     ],
 
-    'qiniu' => [
-        'host' => 'http://share.u.qiniudn.com', //your qiniu host url
+    'qiniu'                       => [
+        'host'       => 'http://share.u.qiniudn.com', //your qiniu host url
         'access_key' => '-S31BNj77Ilqwk5IN85PIBoGg8qlbkqwULiraG0x', //for test
         'secret_key' => 'QoVdaBFZITDp9hD7ytvUKOMAgohKaB8oa11FJdxN', //for test
-        'bucket' => 'share'
-    ],
-
-    'nav_titles'   => [
-        //customize route title such as below:
-        //'admin.roles.index' => '角色管理'
-    ],
+        'bucket'     => 'share'
+    ]
 ];
