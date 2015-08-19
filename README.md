@@ -1,4 +1,4 @@
-[Test](#foroneadmin)
+[Test](#test)
 
 ### Features
 
@@ -86,7 +86,7 @@ Backup database
 php artisan db:backup
 ```
 
-<a href="#test" id="user-content-features"></a>
+<a id="user-content-test" class="anchor" href="#test" aria-hidden="true"><span class="octicon octicon-link"></span></a>
 
 clear database
 
