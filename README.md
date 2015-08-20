@@ -1,3 +1,5 @@
+由于项目重构修改内容较多，现启用新的项目库，该项目不再维护更新，[请点击访问新库](https://github.com/ForoneTech/ForoneAdministrator)
+
 ### Features
 
 1. Role and permissions management
