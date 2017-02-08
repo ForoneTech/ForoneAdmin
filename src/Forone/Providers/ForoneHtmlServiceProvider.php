@@ -538,20 +538,20 @@ class ForoneHtmlServiceProvider extends ServiceProvider{
                                     if ($value == '禁用') {
                                         $html .= Form::form_button([
                                             'name'  => $value,
-                                            'id'    => $item->id,
+                                            'id'    => $item['id'],
                                             'class' => 'bg-warning'
                                         ], ['enabled' => false]);
                                     } else if ($value == '启用') {
                                         $html .= Form::form_button([
                                             'name'  => $value,
-                                            'id'    => $item->id,
+                                            'id'    => $item['id'],
                                             'class' => 'btn-success'
                                         ], ['enabled' => true]);
                                     } else if ($value == '查看') {
-                                        $html .= '<a href="' . $this->url->current() . '/' . $item->id . '">
+                                        $html .= '<a href="' . $this->url->current() . '/' . $item['id'] . '">
                                                     <button class="btn">查看</button></a>';
                                     } else if ($value == '编辑') {
-                                        $html .= '<a href="' . $this->url->current() . '/' . $item->id . '/edit">
+                                        $html .= '<a href="' . $this->url->current() . '/' . $item['id'] . '/edit">
                                                     <button class="btn">编辑</button></a>';
                                     }
                                 }else{
@@ -574,7 +574,7 @@ class ForoneHtmlServiceProvider extends ServiceProvider{
                                                 $config['uri'] = $uri;
                                             }
                                         }else{
-                                            $config['id'] = $item->id;
+                                            $config['id'] = $item['id'];
                                         }
                                         $html .= Form::form_button($config, $data);
                                     }
